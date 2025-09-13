@@ -29,9 +29,15 @@ We built an **AI-driven dynamic pricing engine** that:
 ---
 
 ## 🛠️ Tech Stack
-- **Languages & Libraries**: Python, Pandas, NumPy, Scikit-learn, XGBoost, TensorFlow/PyTorch  
-- **Visualization**: Matplotlib, Seaborn, Plotly  
-- **Deployment**: Flask / Streamlit  
-- **Version Control**: Git, GitHub  
+- **Languages & Libraries**: Python, Pandas, NumPy, Scikit-learn, XGBoost, TensorFlow/PyTorch
+- **Visualization**: Matplotlib, Seaborn, Plotly
+- **Deployment**: Flask / Streamlit
+- **Version Control**: Git, GitHub
+
+---
+
+## 📝 Notes
+- The price prediction and single unit pages share the same code but are implemented as separate units.
+- Further design improvements will be added as soon as possible.
 
 ---
