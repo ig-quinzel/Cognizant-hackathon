@@ -1,0 +1,36 @@
+body {
+    font-family: 'Inter', sans-serif;
+}
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    color: #475569; /* text-slate-600 */
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+}
+.sidebar-link:hover {
+    background-color: #f1f5f9; /* bg-slate-100 */
+    color: #0f172a; /* text-slate-900 */
+}
+.sidebar-link.active {
+    background-color: #818cf8; /* bg-indigo-400 */
+    color: white;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+.sidebar-link.active i {
+     color: white;
+}
+.sidebar-link i {
+    margin-right: 0.75rem;
+    color: #64748b; /* text-slate-500 */
+}
+.spinner {
+    animation: spin 1s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
