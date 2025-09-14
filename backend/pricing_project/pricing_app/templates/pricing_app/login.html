@@ -1,0 +1,157 @@
+
+
+
+
+{% extends "pricing_app/base.html" %}
+
+{% block content %}
+<div class="login-wrapper">
+    <div class="login-card">
+        <h1 class="company-name">TechNova Solutions</h1>
+        <p class="company-tagline">Empowering Businesses with Intelligent Pricing</p>
+
+        <h2 class="login-title">Admin Login</h2>
+
+        {% if form.errors %}
+            <p class="error-message">Invalid username or password.</p>
+        {% endif %}
+
+        <form method="post" class="login-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="login-btn">Sign In</button>
+        </form>
+
+        <p class="footer-note">© 2025 TechNova Solutions. All Rights Reserved.</p>
+    </div>
+</div>
+{% endblock %}
+
+
+
+
+
+
+<!--{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Dynamics - Superuser Login</title>
+    <link rel="stylesheet" href="{% static 'pricing_app/css/style.css' %}">
+</head>
+<body>
+    <div class="login-container">
+        <div class="company-header">
+            <h1>AI Dynamics</h1>
+            <p>Innovating Intelligent Pricing Solutions for Businesses</p>
+        </div>
+
+        <div class="login-description">
+            Welcome, Superuser! Please login below to manage product pricing strategies and access dynamic AI-driven tools.
+        </div>
+
+        <form method="POST" action="{% url 'admin:login' %}">
+            {% csrf_token %}
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" placeholder="Enter superuser username" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter password" required>
+
+            <button type="submit" class="login-btn">Login</button>
+        </form>
+
+        <div class="footer">
+            &copy; 2025 AI Dynamics. All rights reserved.
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+<!--{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - PricePredict Pro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="{% static 'pricing_app/css/style.css' %}">
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <!-- Login Page -->
+    <!--<div id="login-page" class="flex items-center justify-center min-h-screen">
+        <div class="w-full max-w-md p-8 space-y-8 bg-white rounded-2xl shadow-lg">
+            <div class="text-center">
+                <div class="inline-flex items-center justify-center bg-slate-800 text-white w-16 h-16 rounded-full mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 3v18h18"/>
+                        <path d="M7 12v5h10"/>
+                        <path d="M11 12v-2h2v2"/>
+                        <path d="M11 7V6h2v1"/>
+                        <path d="M15 12v-1h2v1"/>
+                        <path d="m7 21-4-4"/>
+                        <path d="m21 21-4-4"/>
+                    </svg>
+                </div>
+                <h1 class="text-3xl font-bold text-slate-800">PricePredictPro</h1>
+                <p class="mt-2 text-slate-500">Sign in to continue</p>
+            </div>
+
+            {% if form.errors %}
+                <p class="text-red-500 text-sm">Invalid username or password.</p>
+            {% endif %}
+
+            <form method="post" class="space-y-6">
+                {% csrf_token %}
+
+                <!-- Username Field -->
+                <!--<div>
+                    <label for="username" class="text-sm font-medium text-slate-700">Username</label>
+                    <div class="mt-1 relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i data-lucide="user" class="w-5 h-5 text-slate-400"></i>
+                        </div>
+                        <input type="text" name="username" id="username" class="w-full pl-10 pr-4 py-2.5 border border-slate-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Enter your username">
+                    </div>
+                </div>
+
+                <!-- Password Field -->
+                <!--<div>
+                    <label for="password" class="text-sm font-medium text-slate-700">Password</label>
+                     <div class="mt-1 relative">
+                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i data-lucide="lock" class="w-5 h-5 text-slate-400"></i>
+                        </div>
+                        <input type="password" name="password" id="password" class="w-full pl-10 pr-4 py-2.5 border border-slate-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="••••••••">
+                    </div>
+                </div>
+
+                <button type="submit" id="login-button" class="w-full py-3 px-4 bg-slate-800 text-white font-semibold rounded-lg hover:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-800 transition-colors">
+                    Sign In
+                </button>
+            </form>
+
+            <div class="text-sm text-center">
+                <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">Forgot password?</a>
+            </div>
+    
+            <p class="text-sm text-center text-slate-500">
+                Need an account? <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">Sign up</a>
+            </p>
+        </div>
+    </div>
+
+    <script src="{% static 'pricing_app/js/script.js' %}"></script>
+</body>
+</html>
+-->

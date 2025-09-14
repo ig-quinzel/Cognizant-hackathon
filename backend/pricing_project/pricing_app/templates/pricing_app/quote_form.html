@@ -1,0 +1,24 @@
+
+
+
+{% extends "pricing_app/base.html" %}
+
+{% block content %}
+<div class="form-wrapper">
+    <div class="form-card">
+        <h1 class="form-title">Predict Product Price</h1>
+        <p class="form-subtitle">Enter the required details below to get an accurate prediction.</p>
+
+        <form method="post" class="quote-form">
+            {% csrf_token %}
+            <div class="form-fields">
+                {{ form.as_p }}
+            </div>
+
+            <button type="submit" class="form-btn">Get Price Prediction</button>
+        </form>
+
+        <p class="form-footer">Ensure all details are correct before submitting.</p>
+    </div>
+</div>
+{% endblock %}
