@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - PricePredict Pro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <div id="app-container" class="flex h-screen">
+        <!-- Sidebar Navigation -->
+        <aside class="w-64 bg-white border-r border-slate-200 flex flex-col">
+            <div class="p-6">
+                <div class="flex items-center gap-3">
+                    <div class="bg-slate-800 text-white p-2 rounded-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 12v5h10"/><path d="M11 12v-2h2v2"/><path d="M11 7V6h2v1"/><path d="M15 12v-1h2v1"/><path d="m7 21-4-4"/><path d="m21 21-4-4"/></svg>
+                    </div>
+                    <div>
+                        <h2 class="font-bold text-lg text-slate-800">PricePredict Pro</h2>
+                        <p class="text-xs text-slate-500">Advanced Analytics Platform</p>
+                    </div>
+                </div>
+            </div>
+
+            <nav class="flex-1 px-4 py-2">
+                <h3 class="px-4 pt-2 pb-2 text-xs font-semibold text-slate-400 uppercase tracking-wider">Navigation</h3>
+                <a href="dashboard.html" class="sidebar-link active">
+                    <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="price_prediction.html" class="sidebar-link">
+                    <i data-lucide="dollar-sign" class="w-5 h-5"></i>
+                    <span>Price Prediction</span>
+                </a>
+                <a href="data_management.html" class="sidebar-link">
+                    <i data-lucide="database" class="w-5 h-5"></i>
+                    <span>Data Management</span>
+                </a>
+            </nav>
+
+            <div class="p-4 border-t border-slate-200">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-indigo-200 text-indigo-700 flex items-center justify-center font-bold">
+                           TW
+                        </div>
+                        <div>
+                            <p class="font-semibold text-sm">thereal whyadhyou</p>
+                            <p class="text-xs text-slate-500">therealwhyadhyou@gmail.com</p>
+                        </div>
+                    </div>
+                    <button id="logout-button" class="text-slate-500 hover:text-slate-800">
+                         <i data-lucide="log-out" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="flex-1 overflow-y-auto p-8">
+            <div id="dashboard-page-content">
+                <h1 class="text-3xl font-bold mb-1">Analytics Dashboard</h1>
+                <p class="text-slate-500 mb-8">Monitor your price predictions and data insights</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-white p-6 rounded-2xl shadow-sm flex items-start justify-between"><div><p class="text-sm font-medium text-slate-500">Total Predictions</p><p class="text-3xl font-bold mt-2">6</p><p class="text-xs text-green-500 mt-2 flex items-center"><i data-lucide="arrow-up-right" class="w-3 h-3 mr-1"></i> 12% from last month</p></div><div class="bg-blue-100 text-blue-600 p-3 rounded-xl"><i data-lucide="target" class="w-6 h-6"></i></div></div>
+                    <div class="bg-white p-6 rounded-2xl shadow-sm flex items-start justify-between"><div><p class="text-sm font-medium text-slate-500">Avg Confidence</p><p class="text-3xl font-bold mt-2">69%</p><p class="text-xs text-green-500 mt-2 flex items-center"><i data-lucide="arrow-up-right" class="w-3 h-3 mr-1"></i> 5% from last month</p></div><div class="bg-green-100 text-green-600 p-3 rounded-xl"><i data-lucide="trending-up" class="w-6 h-6"></i></div></div>
+                    <div class="bg-white p-6 rounded-2xl shadow-sm flex items-start justify-between"><div><p class="text-sm font-medium text-slate-500">Avg Price</p><p class="text-3xl font-bold mt-2">$8959.46</p><p class="text-xs text-red-500 mt-2 flex items-center"><i data-lucide="arrow-down-right" class="w-3 h-3 mr-1"></i> 3% from last month</p></div><div class="bg-purple-100 text-purple-600 p-3 rounded-xl"><i data-lucide="dollar-sign" class="w-6 h-6"></i></div></div>
+                    <div class="bg-white p-6 rounded-2xl shadow-sm flex items-start justify-between"><div><p class="text-sm font-medium text-slate-500">Data Files</p><p class="text-3xl font-bold mt-2">3</p><p class="text-xs text-slate-500 mt-2 flex items-center"><i data-lucide="minus" class="w-3 h-3 mr-1"></i> 0% from last month</p></div><div class="bg-orange-100 text-orange-600 p-3 rounded-xl"><i data-lucide="file-stack" class="w-6 h-6"></i></div></div>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 mb-8">
+                    <div class="lg:col-span-3 bg-white p-6 rounded-2xl shadow-sm"><h3 class="text-lg font-semibold mb-4">Price Predictions Comparison</h3><div class="h-80"><canvas id="barChart"></canvas></div></div>
+                    <div class="lg:col-span-2 bg-white p-6 rounded-2xl shadow-sm"><h3 class="text-lg font-semibold mb-4">Predictions by Category</h3><div class="h-80"><canvas id="pieChart"></canvas></div></div>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-2xl shadow-sm">
+                        <h3 class="text-lg font-semibold mb-4 flex items-center"><i data-lucide="history" class="w-5 h-5 mr-2 text-slate-500"></i>Recent Predictions</h3>
+                        <ul class="space-y-4">
+                            <li class="flex justify-between items-center"><div><p class="font-medium">iPhone 13</p><p class="text-sm text-slate-500">Electronics</p></div><div class="text-right"><p class="font-semibold">$1318.25</p><p class="text-xs text-slate-500">0.85% confidence</p></div></li>
+                            <li class="flex justify-between items-center"><div><p class="font-medium">Nike Air Jordan</p><p class="text-sm text-slate-500">Clothing</p></div><div class="text-right"><p class="font-semibold">$220</p><span class="text-xs bg-green-100 text-green-700 font-semibold px-2 py-1 rounded-full">92% confidence</span></div></li>
+                            <li class="flex justify-between items-center"><div><p class="font-medium">Tesla Model Y</p><p class="text-sm text-slate-500">Automotive</p></div><div class="text-right"><p class="font-semibold">$48500</p><span class="text-xs bg-yellow-100 text-yellow-700 font-semibold px-2 py-1 rounded-full">78% confidence</span></div></li>
+                            <li class="flex justify-between items-center"><div><p class="font-medium">MacBook Pro M3</p><p class="text-sm text-slate-500">Electronics</p></div><div class="text-right"><p class="font-semibold">$2550</p><span class="text-xs bg-green-100 text-green-700 font-semibold px-2 py-1 rounded-full">85% confidence</span></div></li>
+                            <li class="flex justify-between items-center"><div><p class="font-medium">Organic Coffee Beans</p><p class="text-sm text-slate-500">Food</p></div><div class="text-right"><p class="font-semibold">$18.5</p><span class="text-xs bg-yellow-100 text-yellow-700 font-semibold px-2 py-1 rounded-full">73% confidence</span></div></li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-sm">
+                        <h3 class="text-lg font-semibold mb-4 flex items-center"><i data-lucide="upload-cloud" class="w-5 h-5 mr-2 text-slate-500"></i>Recent Uploads</h3>
+                        <ul class="space-y-4">
+                            <li class="flex justify-between items-center"><div><p class="font-medium">sales_data_2024.csv</p><p class="text-sm text-slate-500">1250 records</p></div><span class="text-xs text-white bg-slate-700 font-semibold px-2 py-1 rounded-full">completed</span></li>
+                            <li class="flex justify-between items-center"><div><p class="font-medium">product_inventory.xlsx</p><p class="text-sm text-slate-500">845 records</p></div><span class="text-xs text-white bg-slate-700 font-semibold px-2 py-1 rounded-full">completed</span></li>
+                            <li class="flex justify-between items-center"><div><p class="font-medium">market_research.csv</p><p class="text-sm text-slate-500">records</p></div><span class="text-xs text-blue-700 bg-blue-100 font-semibold px-2 py-1 rounded-full">processing</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

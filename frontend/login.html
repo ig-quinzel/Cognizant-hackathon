@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - PricePredict Pro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <!-- Login Page -->
+    <div id="login-page" class="flex items-center justify-center min-h-screen">
+        <div class="w-full max-w-md p-8 space-y-8 bg-white rounded-2xl shadow-lg">
+            <div class="text-center">
+                <div class="inline-flex items-center justify-center bg-slate-800 text-white w-16 h-16 rounded-full mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 12v5h10"/><path d="M11 12v-2h2v2"/><path d="M11 7V6h2v1"/><path d="M15 12v-1h2v1"/><path d="m7 21-4-4"/><path d="m21 21-4-4"/></svg>
+                </div>
+                <h1 class="text-3xl font-bold text-slate-800">PricePredictPro</h1>
+                <p class="mt-2 text-slate-500">Sign in to continue</p>
+            </div>
+            
+            <button class="w-full flex items-center justify-center gap-2 py-3 px-4 text-slate-700 font-medium border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-round"><path d="M15 6.5C15 8.43 13.43 10 11.5 10S8 8.43 8 6.5S9.57 3 11.5 3S15 4.57 15 6.5Z"/><path d="M11.5 10c-3.87 0-7 3.13-7 7h14c0-3.87-3.13-7-7-7Z"/></svg>
+                Continue with Google
+            </button>
+    
+            <div class="flex items-center justify-center">
+                <div class="flex-grow border-t border-slate-200"></div>
+                <span class="px-4 text-xs font-medium text-slate-400">OR</span>
+                <div class="flex-grow border-t border-slate-200"></div>
+            </div>
+    
+            <div class="space-y-6">
+                <div>
+                    <label for="email" class="text-sm font-medium text-slate-700">Email</label>
+                    <div class="mt-1 relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i data-lucide="mail" class="w-5 h-5 text-slate-400"></i>
+                        </div>
+                        <input type="email" id="email" class="w-full pl-10 pr-4 py-2.5 border border-slate-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="you@example.com">
+                    </div>
+                </div>
+                <div>
+                    <label for="password" class="text-sm font-medium text-slate-700">Password</label>
+                     <div class="mt-1 relative">
+                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i data-lucide="lock" class="w-5 h-5 text-slate-400"></i>
+                        </div>
+                        <input type="password" id="password" class="w-full pl-10 pr-4 py-2.5 border border-slate-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="••••••••">
+                    </div>
+                </div>
+                <button id="login-button" class="w-full py-3 px-4 bg-slate-800 text-white font-semibold rounded-lg hover:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-800 transition-colors">
+                    Sign In
+                </button>
+            </div>
+    
+            <div class="text-sm text-center">
+                <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">Forgot password?</a>
+            </div>
+    
+            <p class="text-sm text-center text-slate-500">
+                Need an account? <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">Sign up</a>
+            </p>
+        </div>
+    </div>
+    
+    <script src="js/script.js"></script>
+</body>
+</html>
