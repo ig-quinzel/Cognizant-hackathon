@@ -1,0 +1,34 @@
+
+
+
+{% extends 'pricing_app/base.html' %}
+
+{% block content %}
+<div class="result-wrapper">
+    <div class="result-card">
+        <h1 class="result-title">Prediction Results</h1>
+        <p class="result-subtitle">Here’s the dynamically generated price based on your inputs.</p>
+
+        <div class="price-display">
+            <span class="currency-symbol">$</span>
+            <span class="predicted-value">{{ predicted_price|floatformat:2 }}</span>
+        </div>
+
+        <div class="input-summary">
+            <h2>Input Summary</h2>
+            <ul>
+                {% for key, value in input_data.items %}
+                    <li><strong>{{ key }}:</strong> {{ value }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="action-buttons">
+            <a href="{% url 'quote_description' %}" class="btn btn-secondary">📊 View Details</a>
+            <a href="{% url 'quote_form' %}" class="btn btn-primary">🔄 Predict Again</a>
+        </div>
+
+        <p class="footer-note">⚡ Powered by TechNova Pricing Intelligence</p>
+    </div>
+</div>
+{% endblock %}

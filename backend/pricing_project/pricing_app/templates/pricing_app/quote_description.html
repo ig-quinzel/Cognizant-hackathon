@@ -1,0 +1,132 @@
+
+
+
+
+
+
+
+
+{% extends 'pricing_app/base.html' %}
+
+{% block content %}
+<div class="description-wrapper">
+    <div class="description-card">
+        <h1 class="description-title">Detailed Price Analysis</h1>
+        <p class="description-subtitle">
+            Below is a breakdown of how the predicted price compares with competitors, discounts, seasonal factors, and input features.
+        </p>
+
+        <div class="chart-grid">
+            <!-- 1. Predicted vs Competitor -->
+            <div class="chart-card">
+                <h2>Predicted vs Competitor Price</h2>
+                <canvas id="priceChart"></canvas>
+                <p class="chart-note">
+                    This chart compares our predicted dynamic price with a competitor’s price, helping identify competitiveness in the market.
+                </p>
+            </div>
+
+            <!-- 2. Discount Impact -->
+            <div class="chart-card">
+                <h2>Discount Impact</h2>
+                <canvas id="discountChart"></canvas>
+                <p class="chart-note">
+                    This shows how discounts affect the final price. It highlights the balance between profitability and customer attraction.
+                </p>
+            </div>
+
+            <!-- 3. Promotion & Holiday -->
+            <div class="chart-card">
+                <h2>Promotion & Holiday Influence</h2>
+                <canvas id="promoHolidayChart"></canvas>
+                <p class="chart-note">
+                    This pie chart explains how promotions and holiday seasons influence the predicted price adjustments.
+                </p>
+            </div>
+
+            <!-- 4. Feature Radar -->
+            <div class="chart-card">
+                <h2>Feature Contribution Radar</h2>
+                <canvas id="featureRadar"></canvas>
+                <p class="chart-note">
+                    The radar chart shows the relative contribution of different features (sales, economy, weather, discounts) to the prediction.
+                </p>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <a href="{% url 'quote_form' %}" class="btn btn-primary">🔄 Predict Another Product</a>
+        </div>
+    </div>
+</div>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const chartData = {{ chart_data|safe }};
+
+    // 1. Predicted vs Competitor
+    new Chart(document.getElementById('priceChart'), {
+        type: 'bar',
+        data: {
+            labels: ['Predicted Price', 'Competitor Price'],
+            datasets: [{
+                label: 'Price',
+                data: [chartData.predicted_price, chartData.competitor_price],
+                backgroundColor: ['#4caf50', '#f44336']
+            }]
+        },
+        options: { responsive: true, maintainAspectRatio: false }
+    });
+
+    // 2. Discount Impact
+    new Chart(document.getElementById('discountChart'), {
+        type: 'bar',
+        data: {
+            labels: ['Without Discount', 'With Discount'],
+            datasets: [{
+                label: 'Price Impact',
+                data: [
+                    chartData.predicted_price,
+                    chartData.predicted_price * (1 - chartData.discount_percentage/100)
+                ],
+                backgroundColor: ['#2196f3', '#ff9800']
+            }]
+        },
+        options: { responsive: true, maintainAspectRatio: false }
+    });
+
+    // 3. Promotion & Holiday
+    new Chart(document.getElementById('promoHolidayChart'), {
+        type: 'pie',
+        data: {
+            labels: ['Holiday Season', 'Promotion Applied'],
+            datasets: [{
+                data: [chartData.holiday_season, chartData.promotion_applied],
+                backgroundColor: ['#9c27b0', '#ffc107']
+            }]
+        },
+        options: { responsive: true, maintainAspectRatio: false }
+    });
+
+    // 4. Feature Radar
+    new Chart(document.getElementById('featureRadar'), {
+        type: 'radar',
+        data: {
+            labels: ['Sales Units', 'Economic Index', 'Weather Impact', 'Discount %'],
+            datasets: [{
+                label: 'Input Feature Strength',
+                data: [
+                    chartData.sales_units,
+                    chartData.economic_index,
+                    chartData.weather_impact,
+                    chartData.discount_percentage
+                ],
+                borderColor: '#3e95cd',
+                backgroundColor: 'rgba(62, 149, 205, 0.2)'
+            }]
+        },
+        options: { responsive: true, maintainAspectRatio: false }
+    });
+</script>
+{% endblock %}
