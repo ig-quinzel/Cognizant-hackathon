@@ -1,0 +1,1466 @@
+[1mdiff --git a/Copy of cognizant-modelbuilding.ipynb b/Copy of cognizant-modelbuilding.ipynb[m
+[1mnew file mode 100644[m
+[1mindex 0000000..37b331d[m
+[1m--- /dev/null[m
+[1m+++ b/Copy of cognizant-modelbuilding.ipynb[m	
+[36m@@ -0,0 +1 @@[m
+[32m+[m[32m{"nbformat":4,"nbformat_minor":0,"metadata":{"colab":{"provenance":[{"file_id":"1P8ndpmve5j9PIV5tH2cRulcry3fM8UNC","timestamp":1757643530506}],"gpuType":"T4","mount_file_id":"1P8ndpmve5j9PIV5tH2cRulcry3fM8UNC","authorship_tag":"ABX9TyOs70/pmzAtbLZrGTs8wCnP"},"kernelspec":{"name":"python3","display_name":"Python 3"},"language_info":{"name":"python"},"accelerator":"GPU"},"cells":[{"cell_type":"code","source":["!git clone https://github.com/ig-quinzel/Cognizant-hackathon.git\n","%cd Cognizant-hackathon\n"],"metadata":{"colab":{"base_uri":"https://localhost:8080/"},"id":"NPszZf5tl11G","executionInfo":{"status":"ok","timestamp":1757643469072,"user_tz":-330,"elapsed":930,"user":{"displayName":"Nandana","userId":"09707162195044241538"}},"outputId":"5f219c74-d86d-4664-d440-f3c0c58b5bb9"},"execution_count":26,"outputs":[{"output_type":"stream","name":"stdout","text":["Cloning into 'Cognizant-hackathon'...\n","remote: Enumerating objects: 9, done.\u001b[K\n","remote: Counting objects: 100% (9/9), done.\u001b[K\n","remote: Compressing objects: 100% (6/6), done.\u001b[K\n","remote: Total 9 (delta 2), reused 0 (delta 0), pack-reused 0 (from 0)\u001b[K\n","Receiving objects: 100% (9/9), 4.59 KiB | 4.59 MiB/s, done.\n","Resolving deltas: 100% (2/2), done.\n","/content/Cognizant-hackathon/Cognizant-hackathon\n"]}]},{"cell_type":"code","source":["!git checkout -b model_building\n"],"metadata":{"colab":{"base_uri":"https://localhost:8080/"},"id":"t3gL5DTytKjm","executionInfo":{"status":"ok","timestamp":1757643479142,"user_tz":-330,"elapsed":115,"user":{"displayName":"Nandana","userId":"09707162195044241538"}},"outputId":"b01a7c65-836a-41e0-e390-053f875633a2"},"execution_count":27,"outputs":[{"output_type":"stream","name":"stdout","text":["Switched to a new branch 'model_building'\n"]}]},{"cell_type":"code","source":["!git branch\n"],"metadata":{"colab":{"base_uri":"https://localhost:8080/"},"id":"YZuJ8GbVsZzN","executionInfo":{"status":"ok","timestamp":1757643508000,"user_tz":-330,"elapsed":107,"user":{"displayName":"Nandana","userId":"09707162195044241538"}},"outputId":"5af49f0f-83d4-40c7-c506-08826a6b3d58"},"execution_count":28,"outputs":[{"output_type":"stream","name":"stdout","text":["  main\u001b[m\n","* \u001b[32mmodel_building\u001b[m\n"]}]},{"cell_type":"code","source":["!mv \"/content/drive/MyDrive/Colab Notebooks/cognizant-modelbuilding.ipynb\" \"/content/Cognizant-hackathon/\"\n"],"metadata":{"colab":{"base_uri":"https://localhost:8080/"},"id":"i1yZ2WwlmCSw","executionInfo":{"status":"ok","timestamp":1757643515230,"user_tz":-330,"elapsed":135,"user":{"displayName":"Nandana","userId":"09707162195044241538"}},"outputId":"1bfde063-9613-4307-ad80-a8adb6f8883a"},"execution_count":30,"outputs":[{"output_type":"stream","name":"stdout","text":["mv: cannot stat '/content/drive/MyDrive/Colab Notebooks/cognizant-modelbuilding.ipynb': No such file or directory\n"]}]},{"cell_type":"code","source":["!git checkout model_building\n"],"metadata":{"colab":{"base_uri":"https://localhost:8080/"},"id":"Sgeu0Z0EslKA","executionInfo":{"status":"ok","timestamp":1757643168861,"user_tz":-330,"elapsed":109,"user":{"displayName":"Nandana","userId":"09707162195044241538"}},"outputId":"47e5fe95-ff18-4870-e624-548cbb0467df"},"execution_count":5,"outputs":[{"output_type":"stream","name":"stdout","text":["Already on 'model_building'\n"]}]},{"cell_type":"code","source":["!git config --global user.name \"ig-quinzel\"\n","!git config --global user.email \"nandanak267@gmail.com\"\n"],"metadata":{"id":"gbkKZCQdso1x","executionInfo":{"status":"ok","timestamp":1757643216625,"user_tz":-330,"elapsed":215,"user":{"displayName":"Nandana","userId":"09707162195044241538"}}},"execution_count":8,"outputs":[]},{"cell_type":"code","source":["!git add cognizant-modelbuilding.ipynb\n","!git commit -m \"Add initial notebook with model code\"\n"],"metadata":{"colab":{"base_uri":"https://localhost:8080/"},"id":"jymWGd_qnYNa","executionInfo":{"status":"ok","timestamp":1757643367672,"user_tz":-330,"elapsed":219,"user":{"displayName":"Nandana","userId":"09707162195044241538"}},"outputId":"74aa2299-0a64-473d-ceb2-b4d6ea97bd8a"},"execution_count":21,"outputs":[{"output_type":"stream","name":"stdout","text":["[model_building 96f11cf] Add initial notebook with model code\n"," 2 files changed, 38 insertions(+), 2 deletions(-)\n"," rewrite README.md (100%)\n"," create mode 100644 cognizant-modelbuilding.ipynb\n"]}]},{"cell_type":"code","source":["!git push origin model_building\n"],"metadata":{"colab":{"base_uri":"https://localhost:8080/"},"id":"V0QRtzNZnkal","executionInfo":{"status":"ok","timestamp":1757643371336,"user_tz":-330,"elapsed":754,"user":{"displayName":"Nandana","userId":"09707162195044241538"}},"outputId":"4c21ade3-2382-4fd9-8852-b12a9764b6a1"},"execution_count":22,"outputs":[{"output_type":"stream","name":"stdout","text":["To https://github.com/ig-quinzel/Cognizant-hackathon.git\n"," \u001b[31m! [rejected]       \u001b[m model_building -> model_building (non-fast-forward)\n","\u001b[31merror: failed to push some refs to 'https://github.com/ig-quinzel/Cognizant-hackathon.git'\n","\u001b[m\u001b[33mhint: Updates were rejected because the tip of your current branch is behind\u001b[m\n","\u001b[33mhint: its remote counterpart. Integrate the remote changes (e.g.\u001b[m\n","\u001b[33mhint: 'git pull ...') before pushing again.\u001b[m\n","\u001b[33mhint: See the 'Note about fast-forwards' in 'git push --help' for details.\u001b[m\n"]}]},{"cell_type":"code","source":["!git branch\n"],"metadata":{"id":"P5eMY3vcofcH"},"execution_count":null,"outputs":[]},{"cell_type":"code","source":["!git add .\n","!git commit -m \"Add notebook with initial code\"\n","\n"],"metadata":{"id":"e3kKOviaomSk"},"execution_count":null,"outputs":[]},{"cell_type":"code","source":["!mv \"/content/drive/MyDrive/Colab Notebooks/cognizant-modelbuilding.ipynb\" \"/content/Cognizant-hackathon/\"\n"],"metadata":{"id":"FfTo31PjpD1w"},"execution_count":null,"outputs":[]},{"cell_type":"code","source":["%cd /content/Cognizant-hackathon/\n","!ls\n"],"metadata":{"id":"bsJWD8hMraWd"},"execution_count":null,"outputs":[]},{"cell_type":"code","source":["!git reset --soft HEAD~1\n"],"metadata":{"id":"0E0sFwemrxtb"},"execution_count":null,"outputs":[]},{"cell_type":"code","source":["!git add .\n","!git commit -m \"Add initial notebook with model code\"\n","!git push origin model_building\n"],"metadata":{"id":"h8Aa7iA8reY7"},"execution_count":null,"outputs":[]},{"cell_type":"code","execution_count":null,"metadata":{"id":"aBwnHprlNf5i"},"outputs":[],"source":["!pip install xgboost seaborn scikit-learn --quiet"]},{"cell_type":"code","source":["# ====================================\n","# 1. Setup: Install dependencies (if needed)\n","# ====================================\n","!pip install xgboost seaborn scikit-learn --quiet\n","\n","# ====================================\n","# 2. Import Libraries\n","# ====================================\n","import pandas as pd\n","import numpy as np\n","import matplotlib.pyplot as plt\n","import seaborn as sns\n","from sklearn.model_selection import train_test_split\n","from sklearn.preprocessing import LabelEncoder, StandardScaler\n","from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score\n","from xgboost import XGBRegressor\n","\n","# ====================================\n","# 3. Load Dataset\n","# ====================================\n","# If file is in Google Drive:\n","# from google.colab import drive\n","# drive.mount('/content/drive')\n","# file_path = \"/content/drive/MyDrive/SYNTHETIC Markdown Dataset.csv\"\n","\n","# If you upload manually via Colab \"Upload file\":\n","from google.colab import files\n","uploaded = files.upload()\n","\n","file_path = list(uploaded.keys())[0]\n","df = pd.read_csv(file_path)\n","\n","print(\"Dataset Shape:\", df.shape)\n","df.head()\n"],"metadata":{"id":"jJVOiUijNmp_"},"execution_count":null,"outputs":[]},{"cell_type":"code","source":["# ====================================\n","# 4. Encode Categorical Features\n","# ====================================\n","categorical_cols = [\"Category\", \"Brand\", \"Season\", \"Product_Name\", \"Promotion_Type\"]\n","encoders = {}\n","for col in categorical_cols:\n","    encoders[col] = LabelEncoder()\n","    df[col] = encoders[col].fit_transform(df[col])\n","\n","# ====================================\n","# 5. Define Features and Target\n","# ====================================\n","X = df.drop([\"Optimal Discount\"], axis=1)\n","y = df[\"Optimal Discount\"]\n","\n","# Scale numerical features\n","scaler = StandardScaler()\n","X_scaled = scaler.fit_transform(X)\n","\n","# ====================================\n","# 6. Train-Test Split\n","# ====================================\n","X_train, X_test, y_train, y_test = train_test_split(\n","    X_scaled, y, test_size=0.2, random_state=42\n",")\n"],"metadata":{"id":"7tNjSwnmNqfe"},"execution_count":null,"outputs":[]},{"cell_type":"code","source":[],"metadata":{"id":"S8Ovn5RbcHZt"},"execution_count":null,"outputs":[]},{"cell_type":"code","source":["# ====================================\n","# 7. Train Model (XGBoost Regressor)\n","# ====================================\n","model = XGBRegressor(\n","    n_estimators=300,\n","    learning_rate=0.1,\n","    max_depth=6,\n","    subsample=0.8,\n","    colsample_bytree=0.8,\n","    random_state=42\n",")\n","\n","model.fit(X_train, y_train)\n","\n","# ====================================\n","# 8. Evaluate Model\n","# ====================================\n","y_pred = model.predict(X_test)\n","\n","mae = mean_absolute_error(y_test, y_pred)\n","rmse = np.sqrt(mean_squared_error(y_test, y_pred))\n","r2 = r2_score(y_test, y_pred)\n","\n","print(\"✅ Model Performance\")\n","print(f\"MAE : {mae:.4f}\")\n","print(f\"RMSE: {rmse:.4f}\")\n","print(f\"R²  : {r2:.4f}\")\n"],"metadata":{"id":"H4p4419JNyLO"},"execution_count":null,"outputs":[]},{"cell_type":"code","source":["# ====================================\n","# 9. Feature Importance\n","# ====================================\n","plt.figure(figsize=(10, 6))\n","sns.barplot(\n","    x=model.feature_importances_,\n","    y=X.columns\n",")\n","plt.title(\"Feature Importance for Dynamic Pricing\")\n","plt.show()\n"],"metadata":{"id":"2irPsWePNzSO"},"execution_count":null,"outputs":[]},{"cell_type":"code","source":["# ====================================\n","# 10. Predict Optimal Discount + Final Price\n","# ====================================\n","# Take one sample from test set\n","sample = X_test[0].reshape(1, -1)\n","pred_discount = model.predict(sample)[0]\n","\n","# Original price from the corresponding row\n","orig_price = df.iloc[X_test[0].argmax()][\"Original_Price\"] if hasattr(X_test, \"shape\") else None\n","# safer approach: pick first row index from y_test\n","sample_idx = y_test.index[0]\n","orig_price = df.loc[sample_idx, \"Original_Price\"]\n","\n","# Final recommended selling price\n","recommended_price = orig_price * (1 - pred_discount)\n","\n","print(f\"Predicted Optimal Discount: {pred_discount:.2f}\")\n","print(f\"Original Price: {orig_price:.2f}\")\n","print(f\"💰 Recommended Selling Price: {recommended_price:.2f}\")\n"],"metadata":{"id":"JRcizmpzN1O8"},"execution_count":null,"outputs":[]},{"cell_type":"code","source":["import matplotlib.pyplot as plt\n","import seaborn as sns\n","\n","# Example: Sales over time\n","plt.figure(figsize=(12,5))\n","plt.plot(df['date'], df['sales_units'], label='Sales Units')\n","plt.title(\"Historical Sales Over Time\")\n","plt.xlabel(\"Date\")\n","plt.ylabel(\"Units Sold\")\n","plt.legend()\n","plt.show()\n"],"metadata":{"id":"cMrGXaQ0pYUo"},"execution_count":null,"outputs":[]},{"cell_type":"code","source":["#\n","# ====================================\n","!pip install seaborn scikit-learn --quiet\n","\n","# ====================================\n","# 2. Import Libraries\n","# ====================================\n","import pandas as pd\n","import numpy as np\n","import matplotlib.pyplot as plt\n","import seaborn as sns\n","from sklearn.model_selection import train_test_split\n","from sklearn.preprocessing import LabelEncoder, StandardScaler\n","from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score\n","from sklearn.ensemble import RandomForestRegressor\n","\n","# ====================================\n","# 3. Load Dataset\n","# ====================================\n","from google.colab import files\n","uploaded = files.upload()\n","\n","file_path = list(uploaded.keys())[0]\n","df = pd.read_csv(file_path)\n","\n","print(\"Dataset Shape:\", df.shape)\n","df.head()\n","\n","# ====================================\n","# 4. Encode Categorical Features\n","# ====================================\n","categorical_cols = [\"Category\", \"Brand\", \"Season\", \"Product_Name\", \"Promotion_Type\"]\n","encoders = {}\n","for col in categorical_cols:\n","    encoders[col] = LabelEncoder()\n","    df[col] = encoders[col].fit_transform(df[col])\n","\n","# ====================================\n","# 5. Define Features and Target\n","# ====================================\n","X = df.drop([\"Optimal Discount\"], axis=1)\n","y = df[\"Optimal Discount\"]\n","\n","# Scale numerical features\n","scaler = StandardScaler()\n","X_scaled = scaler.fit_transform(X)\n","\n","# ====================================\n","# 6. Train-Test Split\n","# ====================================\n","X_train, X_test, y_train, y_test = train_test_split(\n","    X_scaled, y, test_size=0.2, random_state=42\n",")\n","\n","# ====================================\n","# 7. Train Model (Random Forest Regressor)\n","# ====================================\n","rf_model = RandomForestRegressor(\n","    n_estimators=300,\n","    max_depth=None,\n","    min_samples_split=5,\n","    min_samples_leaf=2,\n","    random_state=42,\n","    n_jobs=-1\n",")\n","\n","rf_model.fit(X_train, y_train)\n","\n","# ====================================\n","# 8. Evaluate Model\n","# ====================================\n","y_pred = rf_model.predict(X_test)\n","\n","mae = mean_absolute_error(y_test, y_pred)\n","rmse = np.sqrt(mean_squared_error(y_test, y_pred))\n","r2 = r2_score(y_test, y_pred)\n","\n","print(\"✅ Random Forest Model Performance\")\n","print(f\"MAE : {mae:.4f}\")\n","print(f\"RMSE: {rmse:.4f}\")\n","print(f\"R²  : {r2:.4f}\")\n","\n","# ====================================\n","# 9. Feature Importance\n","# ====================================\n","plt.figure(figsize=(10, 6))\n","sns.barplot(\n","    x=rf_model.feature_importances_,\n","    y=X.columns\n",")\n","plt.title(\"Feature Importance for Dynamic Pricing (Random Forest)\")\n","plt.show()\n","\n","# ====================================\n","# 10. Predict Optimal Discount + Final Price\n","# ====================================\n","# Take one sample from test set\n","sample = X_test[0].reshape(1, -1)\n","pred_discount = rf_model.predict(sample)[0]\n","\n","# Original price from the corresponding row\n","sample_idx = y_test.index[0]\n","orig_price = df.loc[sample_idx, \"Original_Price\"]\n","\n","# Final recommended selling price\n","recommended_price = orig_price * (1 - pred_discount)\n","\n","print(f\"Predicted Optimal Discount: {pred_discount:.2f}\")\n","print(f\"Original Price: {orig_price:.2f}\")\n","print(f\"💰 Recommended Selling Price: {recommended_price:.2f}\")\n"],"metadata":{"id":"DTq-bV81cJEq"},"execution_count":null,"outputs":[]},{"cell_type":"code","source":["\n","\n","import matplotlib.pyplot as plt\n","import seaborn as sns\n","\n","# Example: Sales over time\n","plt.figure(figsize=(12,5))\n","plt.plot(df['date'], df['sales_units'], label='Sales Units')\n","plt.title(\"Historical Sales Over Time\")\n","plt.xlabel(\"Date\")\n","plt.ylabel(\"Units Sold\")\n","plt.legend()\n","plt.show()\n"],"metadata":{"id":"26kL1TkMpP8x"},"execution_count":null,"outputs":[]},{"cell_type":"code","source":[],"metadata":{"id":"__uOMnZHpW0g"},"execution_count":null,"outputs":[]}]}[m
+\ No newline at end of file[m
+[1mdiff --git a/README.md b/README.md[m
+[1mnew file mode 100644[m
+[1mindex 0000000..8406dd1[m
+[1m--- /dev/null[m
+[1m+++ b/README.md[m
+[36m@@ -0,0 +1,37 @@[m
+[32m+[m[32m# 🚀 Cognizant Hackathon 2025 – AI-Driven Dynamic Pricing[m
+[32m+[m
+[32m+[m[32mThis repository contains our project for the **Cognizant Hackathon 2025**, where our team developed an **AI-powered dynamic pricing system**.[m[41m  [m
+[32m+[m[32mThe system automatically adjusts product prices in real-time using **sales history, demand forecasts, competitor pricing, and inventory data**.[m
+[32m+[m
+[32m+[m[32m---[m
+[32m+[m
+[32m+[m[32m## 📌 Problem Statement[m
+[32m+[m[32mTraditional static pricing fails to capture fast-changing **customer behavior** and **market trends**, leading to lost revenue and competitiveness.[m
+[32m+[m
+[32m+[m[32m---[m
+[32m+[m
+[32m+[m[32m## 🎯 Our Solution[m
+[32m+[m[32mWe built an **AI-driven dynamic pricing engine** that:[m
+[32m+[m[32m- Analyzes **sales history, competitor trends, and demand forecasts**.[m
+[32m+[m[32m- Applies **machine learning models** (Regression, Reinforcement Learning, Time Series Forecasting).[m
+[32m+[m[32m- Suggests **real-time price adjustments** to maximize revenue and market share.[m
+[32m+[m[32m- Provides a **visualization dashboard** to monitor price trends and demand.[m
+[32m+[m
+[32m+[m[32m---[m
+[32m+[m
+[32m+[m[32m## 🔑 Features[m
+[32m+[m[32m- 📊 **Data-Driven Insights** – Sales, inventory, and competitor analysis[m[41m  [m
+[32m+[m[32m- 🤖 **ML Models** – Regression, Time Series, Reinforcement Learning[m[41m  [m
+[32m+[m[32m- ⚡ **Dynamic Pricing Engine** – Real-time recommendations[m[41m  [m
+[32m+[m[32m- 📈 **Visualization Dashboard** – Interactive graphs for trends[m[41m  [m
+[32m+[m[32m- 🌍 **Scalable Design** – Works across multiple categories and domains[m[41m  [m
+[32m+[m
+[32m+[m[32m---[m
+[32m+[m
+[32m+[m[32m## 🛠️ Tech Stack[m
+[32m+[m[32m- **Languages & Libraries**: Python, Pandas, NumPy, Scikit-learn, XGBoost, TensorFlow/PyTorch[m[41m  [m
+[32m+[m[32m- **Visualization**: Matplotlib, Seaborn, Plotly[m[41m  [m
+[32m+[m[32m- **Deployment**: Flask / Streamlit[m[41m  [m
+[32m+[m[32m- **Version Control**: Git, GitHub[m[41m  [m
+[32m+[m
+[32m+[m[32m---[m
+[1mdiff --git a/db.sqlite3 b/db.sqlite3[m
+[1mindex 0ab1883..c462911 100644[m
+Binary files a/db.sqlite3 and b/db.sqlite3 differ
+[1mdiff --git a/frontend/css/styles.css b/frontend/css/styles.css[m
+[1mnew file mode 100644[m
+[1mindex 0000000..492eb34[m
+[1m--- /dev/null[m
+[1m+++ b/frontend/css/styles.css[m
+[36m@@ -0,0 +1,36 @@[m
+[32m+[m[32mbody {[m
+[32m+[m[32m    font-family: 'Inter', sans-serif;[m
+[32m+[m[32m}[m
+[32m+[m[32m.sidebar-link {[m
+[32m+[m[32m    display: flex;[m
+[32m+[m[32m    align-items: center;[m
+[32m+[m[32m    padding: 0.75rem 1rem;[m
+[32m+[m[32m    border-radius: 0.5rem;[m
+[32m+[m[32m    color: #475569; /* text-slate-600 */[m
+[32m+[m[32m    font-weight: 500;[m
+[32m+[m[32m    transition: all 0.2s ease-in-out;[m
+[32m+[m[32m    cursor: pointer;[m
+[32m+[m[32m}[m
+[32m+[m[32m.sidebar-link:hover {[m
+[32m+[m[32m    background-color: #f1f5f9; /* bg-slate-100 */[m
+[32m+[m[32m    color: #0f172a; /* text-slate-900 */[m
+[32m+[m[32m}[m
+[32m+[m[32m.sidebar-link.active {[m
+[32m+[m[32m    background-color: #818cf8; /* bg-indigo-400 */[m
+[32m+[m[32m    color: white;[m
+[32m+[m[32m    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);[m
+[32m+[m[32m}[m
+[32m+[m[32m.sidebar-link.active i {[m
+[32m+[m[32m     color: white;[m
+[32m+[m[32m}[m
+[32m+[m[32m.sidebar-link i {[m
+[32m+[m[32m    margin-right: 0.75rem;[m
+[32m+[m[32m    color: #64748b; /* text-slate-500 */[m
+[32m+[m[32m}[m
+[32m+[m[32m.spinner {[m
+[32m+[m[32m    animation: spin 1s linear infinite;[m
+[32m+[m[32m}[m
+[32m+[m[32m@keyframes spin {[m
+[32m+[m[32m    0% { transform: rotate(0deg); }[m
+[32m+[m[32m    100% { transform: rotate(360deg); }[m
+[32m+[m[32m}[m
+[1mdiff --git a/frontend/dashboard.html b/frontend/dashboard.html[m
+[1mnew file mode 100644[m
+[1mindex 0000000..b8ed54c[m
+[1m--- /dev/null[m
+[1m+++ b/frontend/dashboard.html[m
+[36m@@ -0,0 +1,105 @@[m
+[32m+[m[32m<!DOCTYPE html>[m
+[32m+[m[32m<html lang="en">[m
+[32m+[m[32m<head>[m
+[32m+[m[32m    <meta charset="UTF-8">[m
+[32m+[m[32m    <meta name="viewport" content="width=device-width, initial-scale=1.0">[m
+[32m+[m[32m    <title>Dashboard - PricePredict Pro</title>[m
+[32m+[m[32m    <script src="https://cdn.tailwindcss.com"></script>[m
+[32m+[m[32m    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">[m
+[32m+[m[32m    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>[m
+[32m+[m[32m    <script src="https://unpkg.com/lucide@latest"></script>[m
+[32m+[m[32m    <link rel="stylesheet" href="css/style.css">[m
+[32m+[m[32m</head>[m
+[32m+[m[32m<body class="bg-slate-50 text-slate-800">[m
+[32m+[m
+[32m+[m[32m    <div id="app-container" class="flex h-screen">[m
+[32m+[m[32m        <!-- Sidebar Navigation -->[m
+[32m+[m[32m        <aside class="w-64 bg-white border-r border-slate-200 flex flex-col">[m
+[32m+[m[32m            <div class="p-6">[m
+[32m+[m[32m                <div class="flex items-center gap-3">[m
+[32m+[m[32m                    <div class="bg-slate-800 text-white p-2 rounded-lg">[m
+[32m+[m[32m                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 12v5h10"/><path d="M11 12v-2h2v2"/><path d="M11 7V6h2v1"/><path d="M15 12v-1h2v1"/><path d="m7 21-4-4"/><path d="m21 21-4-4"/></svg>[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                    <div>[m
+[32m+[m[32m                        <h2 class="font-bold text-lg text-slate-800">PricePredict Pro</h2>[m
+[32m+[m[32m                        <p class="text-xs text-slate-500">Advanced Analytics Platform</p>[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m            </div>[m
+[32m+[m
+[32m+[m[32m            <nav class="flex-1 px-4 py-2">[m
+[32m+[m[32m                <h3 class="px-4 pt-2 pb-2 text-xs font-semibold text-slate-400 uppercase tracking-wider">Navigation</h3>[m
+[32m+[m[32m                <a href="dashboard.html" class="sidebar-link active">[m
+[32m+[m[32m                    <i data-lucide="layout-dashboard" class="w-5 h-5"></i>[m
+[32m+[m[32m                    <span>Dashboard</span>[m
+[32m+[m[32m                </a>[m
+[32m+[m[32m                <a href="price_prediction.html" class="sidebar-link">[m
+[32m+[m[32m                    <i data-lucide="dollar-sign" class="w-5 h-5"></i>[m
+[32m+[m[32m                    <span>Price Prediction</span>[m
+[32m+[m[32m                </a>[m
+[32m+[m[32m                <a href="data_management.html" class="sidebar-link">[m
+[32m+[m[32m                    <i data-lucide="database" class="w-5 h-5"></i>[m
+[32m+[m[32m                    <span>Data Management</span>[m
+[32m+[m[32m                </a>[m
+[32m+[m[32m            </nav>[m
+[32m+[m
+[32m+[m[32m            <div class="p-4 border-t border-slate-200">[m
+[32m+[m[32m                <div class="flex items-center justify-between">[m
+[32m+[m[32m                    <div class="flex items-center gap-3">[m
+[32m+[m[32m                        <div class="w-10 h-10 rounded-full bg-indigo-200 text-indigo-700 flex items-center justify-center font-bold">[m
+[32m+[m[32m                           TW[m
+[32m+[m[32m                        </div>[m
+[32m+[m[32m                        <div>[m
+[32m+[m[32m                            <p class="font-semibold text-sm">thereal whyadhyou</p>[m
+[32m+[m[32m                            <p class="text-xs text-slate-500">therealwhyadhyou@gmail.com</p>[m
+[32m+[m[32m                        </div>[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                    <button id="logout-button" class="text-slate-500 hover:text-slate-800">[m
+[32m+[m[32m                         <i data-lucide="log-out" class="w-5 h-5"></i>[m
+[32m+[m[32m                    </button>[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m            </div>[m
+[32m+[m[32m        </aside>[m
+[32m+[m
+[32m+[m[32m        <!-- Main Content Area -->[m
+[32m+[m[32m        <main class="flex-1 overflow-y-auto p-8">[m
+[32m+[m[32m            <div id="dashboard-page-content">[m
+[32m+[m[32m                <h1 class="text-3xl font-bold mb-1">Analytics Dashboard</h1>[m
+[32m+[m[32m                <p class="text-slate-500 mb-8">Monitor your price predictions and data insights</p>[m
+[32m+[m[32m                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">[m
+[32m+[m[32m                    <div class="bg-white p-6 rounded-2xl shadow-sm flex items-start justify-between"><div><p class="text-sm font-medium text-slate-500">Total Predictions</p><p class="text-3xl font-bold mt-2">6</p><p class="text-xs text-green-500 mt-2 flex items-center"><i data-lucide="arrow-up-right" class="w-3 h-3 mr-1"></i> 12% from last month</p></div><div class="bg-blue-100 text-blue-600 p-3 rounded-xl"><i data-lucide="target" class="w-6 h-6"></i></div></div>[m
+[32m+[m[32m                    <div class="bg-white p-6 rounded-2xl shadow-sm flex items-start justify-between"><div><p class="text-sm font-medium text-slate-500">Avg Confidence</p><p class="text-3xl font-bold mt-2">69%</p><p class="text-xs text-green-500 mt-2 flex items-center"><i data-lucide="arrow-up-right" class="w-3 h-3 mr-1"></i> 5% from last month</p></div><div class="bg-green-100 text-green-600 p-3 rounded-xl"><i data-lucide="trending-up" class="w-6 h-6"></i></div></div>[m
+[32m+[m[32m                    <div class="bg-white p-6 rounded-2xl shadow-sm flex items-start justify-between"><div><p class="text-sm font-medium text-slate-500">Avg Price</p><p class="text-3xl font-bold mt-2">$8959.46</p><p class="text-xs text-red-500 mt-2 flex items-center"><i data-lucide="arrow-down-right" class="w-3 h-3 mr-1"></i> 3% from last month</p></div><div class="bg-purple-100 text-purple-600 p-3 rounded-xl"><i data-lucide="dollar-sign" class="w-6 h-6"></i></div></div>[m
+[32m+[m[32m                    <div class="bg-white p-6 rounded-2xl shadow-sm flex items-start justify-between"><div><p class="text-sm font-medium text-slate-500">Data Files</p><p class="text-3xl font-bold mt-2">3</p><p class="text-xs text-slate-500 mt-2 flex items-center"><i data-lucide="minus" class="w-3 h-3 mr-1"></i> 0% from last month</p></div><div class="bg-orange-100 text-orange-600 p-3 rounded-xl"><i data-lucide="file-stack" class="w-6 h-6"></i></div></div>[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m                <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 mb-8">[m
+[32m+[m[32m                    <div class="lg:col-span-3 bg-white p-6 rounded-2xl shadow-sm"><h3 class="text-lg font-semibold mb-4">Price Predictions Comparison</h3><div class="h-80"><canvas id="barChart"></canvas></div></div>[m
+[32m+[m[32m                    <div class="lg:col-span-2 bg-white p-6 rounded-2xl shadow-sm"><h3 class="text-lg font-semibold mb-4">Predictions by Category</h3><div class="h-80"><canvas id="pieChart"></canvas></div></div>[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">[m
+[32m+[m[32m                    <div class="bg-white p-6 rounded-2xl shadow-sm">[m
+[32m+[m[32m                        <h3 class="text-lg font-semibold mb-4 flex items-center"><i data-lucide="history" class="w-5 h-5 mr-2 text-slate-500"></i>Recent Predictions</h3>[m
+[32m+[m[32m                        <ul class="space-y-4">[m
+[32m+[m[32m                            <li class="flex justify-between items-center"><div><p class="font-medium">iPhone 13</p><p class="text-sm text-slate-500">Electronics</p></div><div class="text-right"><p class="font-semibold">$1318.25</p><p class="text-xs text-slate-500">0.85% confidence</p></div></li>[m
+[32m+[m[32m                            <li class="flex justify-between items-center"><div><p class="font-medium">Nike Air Jordan</p><p class="text-sm text-slate-500">Clothing</p></div><div class="text-right"><p class="font-semibold">$220</p><span class="text-xs bg-green-100 text-green-700 font-semibold px-2 py-1 rounded-full">92% confidence</span></div></li>[m
+[32m+[m[32m                            <li class="flex justify-between items-center"><div><p class="font-medium">Tesla Model Y</p><p class="text-sm text-slate-500">Automotive</p></div><div class="text-right"><p class="font-semibold">$48500</p><span class="text-xs bg-yellow-100 text-yellow-700 font-semibold px-2 py-1 rounded-full">78% confidence</span></div></li>[m
+[32m+[m[32m                            <li class="flex justify-between items-center"><div><p class="font-medium">MacBook Pro M3</p><p class="text-sm text-slate-500">Electronics</p></div><div class="text-right"><p class="font-semibold">$2550</p><span class="text-xs bg-green-100 text-green-700 font-semibold px-2 py-1 rounded-full">85% confidence</span></div></li>[m
+[32m+[m[32m                            <li class="flex justify-between items-center"><div><p class="font-medium">Organic Coffee Beans</p><p class="text-sm text-slate-500">Food</p></div><div class="text-right"><p class="font-semibold">$18.5</p><span class="text-xs bg-yellow-100 text-yellow-700 font-semibold px-2 py-1 rounded-full">73% confidence</span></div></li>[m
+[32m+[m[32m                        </ul>[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                    <div class="bg-white p-6 rounded-2xl shadow-sm">[m
+[32m+[m[32m                        <h3 class="text-lg font-semibold mb-4 flex items-center"><i data-lucide="upload-cloud" class="w-5 h-5 mr-2 text-slate-500"></i>Recent Uploads</h3>[m
+[32m+[m[32m                        <ul class="space-y-4">[m
+[32m+[m[32m                            <li class="flex justify-between items-center"><div><p class="font-medium">sales_data_2024.csv</p><p class="text-sm text-slate-500">1250 records</p></div><span class="text-xs text-white bg-slate-700 font-semibold px-2 py-1 rounded-full">completed</span></li>[m
+[32m+[m[32m                            <li class="flex justify-between items-center"><div><p class="font-medium">product_inventory.xlsx</p><p class="text-sm text-slate-500">845 records</p></div><span class="text-xs text-white bg-slate-700 font-semibold px-2 py-1 rounded-full">completed</span></li>[m
+[32m+[m[32m                            <li class="flex justify-between items-center"><div><p class="font-medium">market_research.csv</p><p class="text-sm text-slate-500">records</p></div><span class="text-xs text-blue-700 bg-blue-100 font-semibold px-2 py-1 rounded-full">processing</span></li>[m
+[32m+[m[32m                        </ul>[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m            </div>[m
+[32m+[m[32m        </main>[m
+[32m+[m[32m    </div>[m
+[32m+[m
+[32m+[m[32m    <script src="js/script.js"></script>[m
+[32m+[m[32m</body>[m
+[32m+[m[32m</html>[m
+[1mdiff --git a/frontend/data_management.html b/frontend/data_management.html[m
+[1mnew file mode 100644[m
+[1mindex 0000000..48a1663[m
+[1m--- /dev/null[m
+[1m+++ b/frontend/data_management.html[m
+[36m@@ -0,0 +1,95 @@[m
+[32m+[m[32m<!DOCTYPE html>[m
+[32m+[m[32m<html lang="en">[m
+[32m+[m[32m<head>[m
+[32m+[m[32m    <meta charset="UTF-8">[m
+[32m+[m[32m    <meta name="viewport" content="width=device-width, initial-scale=1.0">[m
+[32m+[m[32m    <title>Data Management - PricePredict Pro</title>[m
+[32m+[m[32m    <script src="https://cdn.tailwindcss.com"></script>[m
+[32m+[m[32m    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">[m
+[32m+[m[32m    <script src="https://unpkg.com/lucide@latest"></script>[m
+[32m+[m[32m    <link rel="stylesheet" href="css/style.css">[m
+[32m+[m[32m</head>[m
+[32m+[m[32m<body class="bg-slate-50 text-slate-800">[m
+[32m+[m
+[32m+[m[32m    <div id="app-container" class="flex h-screen">[m
+[32m+[m[32m        <!-- Sidebar Navigation -->[m
+[32m+[m[32m        <aside class="w-64 bg-white border-r border-slate-200 flex flex-col">[m
+[32m+[m[32m            <div class="p-6">[m
+[32m+[m[32m                 <div class="flex items-center gap-3">[m
+[32m+[m[32m                    <div class="bg-slate-800 text-white p-2 rounded-lg">[m
+[32m+[m[32m                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 12v5h10"/><path d="M11 12v-2h2v2"/><path d="M11 7V6h2v1"/><path d="M15 12v-1h2v1"/><path d="m7 21-4-4"/><path d="m21 21-4-4"/></svg>[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                    <div>[m
+[32m+[m[32m                        <h2 class="font-bold text-lg text-slate-800">PricePredict Pro</h2>[m
+[32m+[m[32m                        <p class="text-xs text-slate-500">Advanced Analytics Platform</p>[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m            </div>[m
+[32m+[m
+[32m+[m[32m            <nav class="flex-1 px-4 py-2">[m
+[32m+[m[32m                <h3 class="px-4 pt-2 pb-2 text-xs font-semibold text-slate-400 uppercase tracking-wider">Navigation</h3>[m
+[32m+[m[32m                <a href="dashboard.html" class="sidebar-link">[m
+[32m+[m[32m                    <i data-lucide="layout-dashboard" class="w-5 h-5"></i>[m
+[32m+[m[32m                    <span>Dashboard</span>[m
+[32m+[m[32m                </a>[m
+[32m+[m[32m                <a href="price_prediction.html" class="sidebar-link">[m
+[32m+[m[32m                    <i data-lucide="dollar-sign" class="w-5 h-5"></i>[m
+[32m+[m[32m                    <span>Price Prediction</span>[m
+[32m+[m[32m                </a>[m
+[32m+[m[32m                <a href="data_management.html" class="sidebar-link active">[m
+[32m+[m[32m                    <i data-lucide="database" class="w-5 h-5"></i>[m
+[32m+[m[32m                    <span>Data Management</span>[m
+[32m+[m[32m                </a>[m
+[32m+[m[32m            </nav>[m
+[32m+[m
+[32m+[m[32m            <div class="p-4 border-t border-slate-200">[m
+[32m+[m[32m                <div class="flex items-center justify-between">[m
+[32m+[m[32m                    <div class="flex items-center gap-3">[m
+[32m+[m[32m                        <div class="w-10 h-10 rounded-full bg-indigo-200 text-indigo-700 flex items-center justify-center font-bold">[m
+[32m+[m[32m                           TW[m
+[32m+[m[32m                        </div>[m
+[32m+[m[32m                        <div>[m
+[32m+[m[32m                            <p class="font-semibold text-sm">thereal whyadhyou</p>[m
+[32m+[m[32m                            <p class="text-xs text-slate-500">therealwhyadhyou@gmail.com</p>[m
+[32m+[m[32m                        </div>[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                    <button id="logout-button" class="text-slate-500 hover:text-slate-800">[m
+[32m+[m[32m                         <i data-lucide="log-out" class="w-5 h-5"></i>[m
+[32m+[m[32m                    </button>[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m            </div>[m
+[32m+[m[32m        </aside>[m
+[32m+[m
+[32m+[m[32m        <!-- Main Content Area -->[m
+[32m+[m[32m        <main class="flex-1 overflow-y-auto p-8">[m
+[32m+[m[32m            <div id="data-page-content">[m
+[32m+[m[32m                 <h1 class="text-3xl font-bold mb-1">Data Management</h1>[m
+[32m+[m[32m                <p class="text-slate-500 mb-8">Upload and manage your data files</p>[m
+[32m+[m[32m                <div class="bg-white p-8 rounded-2xl shadow-sm mb-8">[m
+[32m+[m[32m                    <h3 class="text-lg font-semibold mb-6 flex items-center"><i data-lucide="upload-cloud" class="w-5 h-5 mr-3 text-indigo-500"></i>Upload New Data File</h3>[m
+[32m+[m[32m                    <div class="border-2 border-dashed border-slate-300 rounded-lg p-10 text-center"><div class="mx-auto w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center"><i data-lucide="upload" class="w-8 h-8 text-slate-500"></i></div><p class="mt-4 font-semibold text-slate-700" id="file-upload-text">Upload CSV or Excel File</p><p class="text-sm text-slate-500 mt-1">Drag and drop your file here or click to browse</p><input type="file" class="hidden" id="file-upload" accept=".csv,.xlsx,.xls"><label for="file-upload" class="mt-6 inline-block cursor-pointer py-2 px-5 bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-semibold rounded-lg shadow-md hover:from-indigo-600 hover:to-purple-600 transition-all">Choose File</label><p class="text-xs text-slate-400 mt-4">Supported formats: CSV, XLSX, XLS (Max 10MB)</p></div>[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m                <div class="bg-white p-8 rounded-2xl shadow-sm">[m
+[32m+[m[32m                    <div class="flex justify-between items-center mb-6"><h3 class="text-lg font-semibold flex items-center"><i data-lucide="file-stack" class="w-5 h-5 mr-3 text-indigo-500"></i>Uploaded Files (3)</h3></div>[m
+[32m+[m[32m                    <div class="overflow-x-auto">[m
+[32m+[m[32m                        <table class="w-full text-sm text-left">[m
+[32m+[m[32m                            <thead class="bg-slate-50 text-slate-500 uppercase text-xs"><tr><th class="px-6 py-3 rounded-l-lg">File Name</th><th class="px-6 py-3">Type</th><th class="px-6 py-3">Status</th><th class="px-6 py-3">Records</th><th class="px-6 py-3">Upload Date</th><th class="px-6 py-3 rounded-r-lg">Actions</th></tr></thead>[m
+[32m+[m[32m                            <tbody>[m
+[32m+[m[32m                                <tr class="border-b"><td class="px-6 py-4 font-medium">sales_data_2024.csv</td><td class="px-6 py-4">CSV</td><td class="px-6 py-4"><span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-1 rounded-full">Completed</span></td><td class="px-6 py-4">1250</td><td class="px-6 py-4">2025-09-12</td><td class="px-6 py-4"><button class="text-slate-500 hover:text-indigo-600">View</button></td></tr>[m
+[32m+[m[32m                                <tr class="border-b"><td class="px-6 py-4 font-medium">product_inventory.xlsx</td><td class="px-6 py-4">XLSX</td><td class="px-6 py-4"><span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-1 rounded-full">Completed</span></td><td class="px-6 py-4">845</td><td class="px-6 py-4">2025-09-11</td><td class="px-6 py-4"><button class="text-slate-500 hover:text-indigo-600">View</button></td></tr>[m
+[32m+[m[32m                                <tr><td class="px-6 py-4 font-medium">market_research.csv</td><td class="px-6 py-4">CSV</td><td class="px-6 py-4"><span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-1 rounded-full">Processing</span></td><td class="px-6 py-4">...</td><td class="px-6 py-4">2025-09-12</td><td class="px-6 py-4"><button class="text-slate-500 hover:text-indigo-600">View</button></td></tr>[m
+[32m+[m[32m                            </tbody>[m
+[32m+[m[32m                        </table>[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                     <div class="mt-6 p-4 bg-slate-100 rounded-lg text-sm text-slate-600 flex items-start">[m
+[32m+[m[32m                        <i data-lucide="info" class="w-5 h-5 mr-3 text-slate-500 flex-shrink-0"></i>[m
+[32m+[m[32m                        <div><strong>File Processing:</strong> Uploaded files are automatically processed to extract data records. CSV files are parsed immediately, while Excel files may take a few moments to process.</div>[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m            </div>[m
+[32m+[m[32m        </main>[m
+[32m+[m[32m    </div>[m
+[32m+[m
+[32m+[m[32m    <script src="js/script.js"></script>[m
+[32m+[m[32m</body>[m
+[32m+[m[32m</html>[m
+[1mdiff --git a/frontend/js/script.js b/frontend/js/script.js[m
+[1mnew file mode 100644[m
+[1mindex 0000000..a482bce[m
+[1m--- /dev/null[m
+[1m+++ b/frontend/js/script.js[m
+[36m@@ -0,0 +1,171 @@[m
+[32m+[m[32mdocument.addEventListener('DOMContentLoaded', () => {[m
+[32m+[m[32m    lucide.createIcons();[m
+[32m+[m
+[32m+[m[32m    // --- Page Routing / Logic ---[m
+[32m+[m[32m    const pageId = document.body.querySelector('div[id$="-page"], div[id$="-container"]')?.id || '';[m
+[32m+[m
+[32m+[m[32m    // Login Page Logic[m
+[32m+[m[32m    if (pageId.startsWith('login')) {[m
+[32m+[m[32m        const loginButton = document.getElementById('login-button');[m
+[32m+[m[32m        if (loginButton) {[m
+[32m+[m[32m            loginButton.addEventListener('click', () => {[m
+[32m+[m[32m                // In a real app, you'd perform authentication here[m
+[32m+[m[32m                window.location.href = 'dashboard.html';[m
+[32m+[m[32m            });[m
+[32m+[m[32m        }[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    // Main App Logic (for all pages except login)[m
+[32m+[m[32m    if (pageId.startsWith('app-container')) {[m
+[32m+[m[32m        const logoutButton = document.getElementById('logout-button');[m
+[32m+[m[32m        if (logoutButton) {[m
+[32m+[m[32m            logoutButton.addEventListener('click', () => {[m
+[32m+[m[32m                window.location.href = 'login.html';[m
+[32m+[m[32m            });[m
+[32m+[m[32m        }[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    // Dashboard Page Logic[m
+[32m+[m[32m    if (document.getElementById('dashboard-page-content')) {[m
+[32m+[m[32m        renderDashboardCharts();[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    // Prediction Page Logic[m
+[32m+[m[32m    if (document.getElementById('prediction-page-container')) {[m
+[32m+[m[32m        setupPredictionPage();[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    // Data Management Page Logic[m
+[32m+[m[32m    if (document.getElementById('data-page-content')) {[m
+[32m+[m[32m        setupDataManagementPage();[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    // --- Function Definitions ---[m
+[32m+[m
+[32m+[m[32m    function setupPredictionPage() {[m
+[32m+[m[32m        const predictionFormContent = document.getElementById('prediction-form-content');[m
+[32m+[m[32m        const predictionResultsContent = document.getElementById('prediction-results-content');[m
+[32m+[m[32m        const generatePredictionBtn = document.getElementById('generate-prediction-btn');[m
+[32m+[m[32m        const newPredictionBtn = document.getElementById('new-prediction-btn');[m
+[32m+[m[32m        const predictionError = document.getElementById('prediction-error');[m
+[32m+[m[32m        const formInputs = {[m
+[32m+[m[32m            itemName: document.getElementById('item-name'),[m
+[32m+[m[32m            category: document.getElementById('category'),[m
+[32m+[m[32m            histPrice: document.getElementById('hist-price'),[m
+[32m+[m[32m            marketDemand: document.getElementById('market-demand'),[m
+[32m+[m[32m            seasonalFactor: document.getElementById('seasonal-factor')[m
+[32m+[m[32m        };[m
+[32m+[m
+[32m+[m[32m        generatePredictionBtn.addEventListener('click', () => {[m
+[32m+[m[32m            const allFilled = Object.values(formInputs).every(input => input.value.trim() !== '');[m
+[32m+[m[32m            if (!allFilled) {[m
+[32m+[m[32m                predictionError.classList.remove('hidden');[m
+[32m+[m[32m                return;[m
+[32m+[m[32m            }[m
+[32m+[m[32m            predictionError.classList.add('hidden');[m
+[32m+[m
+[32m+[m[32m            const btnText = generatePredictionBtn.querySelector('.btn-text');[m
+[32m+[m[32m            btnText.textContent = 'Generating...';[m
+[32m+[m[32m            generatePredictionBtn.disabled = true;[m
+[32m+[m[32m            const spinner = document.createElement('i');[m
+[32m+[m[32m            spinner.setAttribute('data-lucide', 'loader-2');[m
+[32m+[m[32m            spinner.classList.add('w-5', 'h-5', 'animate-spin');[m
+[32m+[m[32m            generatePredictionBtn.prepend(spinner);[m
+[32m+[m[32m            lucide.createIcons({ nodes: [spinner] });[m
+[32m+[m
+[32m+[m[32m            setTimeout(() => {[m
+[32m+[m[32m                const histPrice = parseFloat(formInputs.histPrice.value);[m
+[32m+[m[32m                const predictedPrice = histPrice * 0.92;[m
+[32m+[m[32m                const priceChange = ((predictedPrice - histPrice) / histPrice) * 100;[m
+[32m+[m
+[32m+[m[32m                document.getElementById('result-item-name').textContent = formInputs.itemName.value;[m
+[32m+[m[32m                document.getElementById('result-price').textContent = '$' + predictedPrice.toFixed(2);[m
+[32m+[m[32m                document.getElementById('result-confidence').textContent = (Math.random() * (98 - 75) + 75).toFixed(2) + '% Confidence';[m
+[32m+[m[32m                document.getElementById('result-hist-price').textContent = '$' + histPrice.toFixed(2);[m
+[32m+[m[41m                [m
+[32m+[m[32m                const priceChangeEl = document.getElementById('result-price-change');[m
+[32m+[m[32m                priceChangeEl.textContent = priceChange.toFixed(1) + '%';[m
+[32m+[m[32m                priceChangeEl.classList.toggle('text-red-500', priceChange < 0);[m
+[32m+[m[32m                priceChangeEl.classList.toggle('text-green-500', priceChange >= 0);[m
+[32m+[m
+[32m+[m[32m                document.getElementById('result-category').textContent = formInputs.category.value;[m
+[32m+[m[32m                document.getElementById('result-demand').textContent = formInputs.marketDemand.value + '/10';[m
+[32m+[m[32m                document.getElementById('result-season').textContent = formInputs.seasonalFactor.options[formInputs.seasonalFactor.selectedIndex].text;[m
+[32m+[m[41m                [m
+[32m+[m[32m                document.getElementById('market-analysis-text').textContent = `The ${formInputs.itemName.value} has seen stable global demand, but with a rating of ${formInputs.marketDemand.value}/10 in market demand, it indicates moderate interest. The seasonal factor suggests a mild impact on pricing. Historical pricing shows a solid base at $${histPrice.toFixed(2)}, but a predicted decline to $${predictedPrice.toFixed(2)} factors in current market saturation and lower new model demand.`;[m
+[32m+[m
+[32m+[m[32m                predictionFormContent.classList.add('hidden');[m
+[32m+[m[32m                predictionResultsContent.classList.remove('hidden');[m
+[32m+[m
+[32m+[m[32m                btnText.textContent = 'Generate Prediction';[m
+[32m+[m[32m                generatePredictionBtn.disabled = false;[m
+[32m+[m[32m                generatePredictionBtn.querySelector('i').remove();[m
+[32m+[m[32m            }, 2000);[m
+[32m+[m[32m        });[m
+[32m+[m
+[32m+[m[32m        newPredictionBtn.addEventListener('click', () => {[m
+[32m+[m[32m            predictionResultsContent.classList.add('hidden');[m
+[32m+[m[32m            predictionFormContent.classList.remove('hidden');[m
+[32m+[m[32m            predictionError.classList.add('hidden');[m
+[32m+[m[32m        });[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    function setupDataManagementPage() {[m
+[32m+[m[32m        const fileUpload = document.getElementById('file-upload');[m
+[32m+[m[32m        const fileUploadText = document.getElementById('file-upload-text');[m
+[32m+[m[32m        if (fileUpload) {[m
+[32m+[m[32m            fileUpload.addEventListener('change', () => {[m
+[32m+[m[32m                if (fileUpload.files.length > 0) {[m
+[32m+[m[32m                    fileUploadText.textContent = fileUpload.files[0].name;[m
+[32m+[m[32m                } else {[m
+[32m+[m[32m                    fileUploadText.textContent = 'Upload CSV or Excel File';[m
+[32m+[m[32m                }[m
+[32m+[m[32m            });[m
+[32m+[m[32m        }[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    function renderDashboardCharts() {[m
+[32m+[m[32m        let barChartInstance, pieChartInstance;[m
+[32m+[m
+[32m+[m[32m        const barCtx = document.getElementById('barChart')?.getContext('2d');[m
+[32m+[m[32m        if (barCtx) {[m
+[32m+[m[32m            barChartInstance = new Chart(barCtx, {[m
+[32m+[m[32m                type: 'bar',[m
+[32m+[m[32m                data: {[m
+[32m+[m[32m                    labels: ['Nike Air Jordan', 'MacBook Pro M3', 'iPhone 15 Pro'],[m
+[32m+[m[32m                    datasets: [{[m
+[32m+[m[32m                        label: 'Predicted Price',[m
+[32m+[m[32m                        data: [220, 2550, 1100],[m
+[32m+[m[32m                        backgroundColor: 'rgba(79, 70, 229, 0.8)',[m
+[32m+[m[32m                        borderRadius: 8,[m
+[32m+[m[32m                        barThickness: 30,[m
+[32m+[m[32m                    }, {[m
+[32m+[m[32m                        label: 'Market Average',[m
+[32m+[m[32m                        data: [250, 2600, 1150],[m
+[32m+[m[32m                        backgroundColor: 'rgba(203, 213, 225, 0.8)',[m
+[32m+[m[32m                        borderRadius: 8,[m
+[32m+[m[32m                        barThickness: 30,[m
+[32m+[m[32m                    }][m
+[32m+[m[32m                },[m
+[32m+[m[32m                options: { responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true } } }[m
+[32m+[m[32m            });[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m[32m        const pieCtx = document.getElementById('pieChart')?.getContext('2d');[m
+[32m+[m[32m        if (pieCtx) {[m
+[32m+[m[32m            pieChartInstance = new Chart(pieCtx, {[m
+[32m+[m[32m                type: 'pie',[m
+[32m+[m[32m                data: {[m
+[32m+[m[32m                    labels: ['Electronics', 'Clothing', 'Food', 'Automotive'],[m
+[32m+[m[32m                    datasets: [{[m
+[32m+[m[32m                        data: [50, 17, 17, 17],[m
+[32m+[m[32m                        backgroundColor: ['#4f46e5', '#a78bfa', '#34d399', '#f59e0b'],[m
+[32m+[m[32m                        borderColor: '#ffffff',[m
+[32m+[m[32m                        borderWidth: 4,[m
+[32m+[m[32m                    }][m
+[32m+[m[32m                },[m
+[32m+[m[32m                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } }[m
+[32m+[m[32m            });[m
+[32m+[m[32m        }[m
+[32m+[m[32m    }[m
+[32m+[m[32m});[m
+[1mdiff --git a/frontend/login.html b/frontend/login.html[m
+[1mnew file mode 100644[m
+[1mindex 0000000..ecdab61[m
+[1m--- /dev/null[m
+[1m+++ b/frontend/login.html[m
+[36m@@ -0,0 +1,72 @@[m
+[32m+[m[32m<!DOCTYPE html>[m
+[32m+[m[32m<html lang="en">[m
+[32m+[m[32m<head>[m
+[32m+[m[32m    <meta charset="UTF-8">[m
+[32m+[m[32m    <meta name="viewport" content="width=device-width, initial-scale=1.0">[m
+[32m+[m[32m    <title>Login - PricePredict Pro</title>[m
+[32m+[m[32m    <script src="https://cdn.tailwindcss.com"></script>[m
+[32m+[m[32m    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">[m
+[32m+[m[32m    <script src="https://unpkg.com/lucide@latest"></script>[m
+[32m+[m[32m    <link rel="stylesheet" href="css/style.css">[m
+[32m+[m[32m</head>[m
+[32m+[m[32m<body class="bg-slate-50 text-slate-800">[m
+[32m+[m
+[32m+[m[32m    <!-- Login Page -->[m
+[32m+[m[32m    <div id="login-page" class="flex items-center justify-center min-h-screen">[m
+[32m+[m[32m        <div class="w-full max-w-md p-8 space-y-8 bg-white rounded-2xl shadow-lg">[m
+[32m+[m[32m            <div class="text-center">[m
+[32m+[m[32m                <div class="inline-flex items-center justify-center bg-slate-800 text-white w-16 h-16 rounded-full mb-4">[m
+[32m+[m[32m                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 12v5h10"/><path d="M11 12v-2h2v2"/><path d="M11 7V6h2v1"/><path d="M15 12v-1h2v1"/><path d="m7 21-4-4"/><path d="m21 21-4-4"/></svg>[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m                <h1 class="text-3xl font-bold text-slate-800">PricePredictPro</h1>[m
+[32m+[m[32m                <p class="mt-2 text-slate-500">Sign in to continue</p>[m
+[32m+[m[32m            </div>[m
+[32m+[m[41m            [m
+[32m+[m[32m            <button class="w-full flex items-center justify-center gap-2 py-3 px-4 text-slate-700 font-medium border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors">[m
+[32m+[m[32m                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-round"><path d="M15 6.5C15 8.43 13.43 10 11.5 10S8 8.43 8 6.5S9.57 3 11.5 3S15 4.57 15 6.5Z"/><path d="M11.5 10c-3.87 0-7 3.13-7 7h14c0-3.87-3.13-7-7-7Z"/></svg>[m
+[32m+[m[32m                Continue with Google[m
+[32m+[m[32m            </button>[m
+[32m+[m[41m    [m
+[32m+[m[32m            <div class="flex items-center justify-center">[m
+[32m+[m[32m                <div class="flex-grow border-t border-slate-200"></div>[m
+[32m+[m[32m                <span class="px-4 text-xs font-medium text-slate-400">OR</span>[m
+[32m+[m[32m                <div class="flex-grow border-t border-slate-200"></div>[m
+[32m+[m[32m            </div>[m
+[32m+[m[41m    [m
+[32m+[m[32m            <div class="space-y-6">[m
+[32m+[m[32m                <div>[m
+[32m+[m[32m                    <label for="email" class="text-sm font-medium text-slate-700">Email</label>[m
+[32m+[m[32m                    <div class="mt-1 relative">[m
+[32m+[m[32m                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">[m
+[32m+[m[32m                            <i data-lucide="mail" class="w-5 h-5 text-slate-400"></i>[m
+[32m+[m[32m                        </div>[m
+[32m+[m[32m                        <input type="email" id="email" class="w-full pl-10 pr-4 py-2.5 border border-slate-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="you@example.com">[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m                <div>[m
+[32m+[m[32m                    <label for="password" class="text-sm font-medium text-slate-700">Password</label>[m
+[32m+[m[32m                     <div class="mt-1 relative">[m
+[32m+[m[32m                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">[m
+[32m+[m[32m                            <i data-lucide="lock" class="w-5 h-5 text-slate-400"></i>[m
+[32m+[m[32m                        </div>[m
+[32m+[m[32m                        <input type="password" id="password" class="w-full pl-10 pr-4 py-2.5 border border-slate-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="••••••••">[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m                <button id="login-button" class="w-full py-3 px-4 bg-slate-800 text-white font-semibold rounded-lg hover:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-800 transition-colors">[m
+[32m+[m[32m                    Sign In[m
+[32m+[m[32m                </button>[m
+[32m+[m[32m            </div>[m
+[32m+[m[41m    [m
+[32m+[m[32m            <div class="text-sm text-center">[m
+[32m+[m[32m                <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">Forgot password?</a>[m
+[32m+[m[32m            </div>[m
+[32m+[m[41m    [m
+[32m+[m[32m            <p class="text-sm text-center text-slate-500">[m
+[32m+[m[32m                Need an account? <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">Sign up</a>[m
+[32m+[m[32m            </p>[m
+[32m+[m[32m        </div>[m
+[32m+[m[32m    </div>[m
+[32m+[m[41m    [m
+[32m+[m[32m    <script src="js/script.js"></script>[m
+[32m+[m[32m</body>[m
+[32m+[m[32m</html>[m
+[1mdiff --git a/frontend/price_prediction.html b/frontend/price_prediction.html[m
+[1mnew file mode 100644[m
+[1mindex 0000000..5dc9b13[m
+[1m--- /dev/null[m
+[1m+++ b/frontend/price_prediction.html[m
+[36m@@ -0,0 +1,149 @@[m
+[32m+[m[32m<!DOCTYPE html>[m
+[32m+[m[32m<html lang="en">[m
+[32m+[m[32m<head>[m
+[32m+[m[32m    <meta charset="UTF-8">[m
+[32m+[m[32m    <meta name="viewport" content="width=device-width, initial-scale=1.0">[m
+[32m+[m[32m    <title>Price Prediction - PricePredict Pro</title>[m
+[32m+[m[32m    <script src="https://cdn.tailwindcss.com"></script>[m
+[32m+[m[32m    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">[m
+[32m+[m[32m    <script src="https://unpkg.com/lucide@latest"></script>[m
+[32m+[m[32m    <link rel="stylesheet" href="css/style.css">[m
+[32m+[m[32m</head>[m
+[32m+[m[32m<body class="bg-slate-50 text-slate-800">[m
+[32m+[m
+[32m+[m[32m    <div id="app-container" class="flex h-screen">[m
+[32m+[m[32m        <!-- Sidebar Navigation -->[m
+[32m+[m[32m        <aside class="w-64 bg-white border-r border-slate-200 flex flex-col">[m
+[32m+[m[32m            <div class="p-6">[m
+[32m+[m[32m                 <div class="flex items-center gap-3">[m
+[32m+[m[32m                    <div class="bg-slate-800 text-white p-2 rounded-lg">[m
+[32m+[m[32m                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 12v5h10"/><path d="M11 12v-2h2v2"/><path d="M11 7V6h2v1"/><path d="M15 12v-1h2v1"/><path d="m7 21-4-4"/><path d="m21 21-4-4"/></svg>[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                    <div>[m
+[32m+[m[32m                        <h2 class="font-bold text-lg text-slate-800">PricePredict Pro</h2>[m
+[32m+[m[32m                        <p class="text-xs text-slate-500">Advanced Analytics Platform</p>[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m            </div>[m
+[32m+[m
+[32m+[m[32m            <nav class="flex-1 px-4 py-2">[m
+[32m+[m[32m                <h3 class="px-4 pt-2 pb-2 text-xs font-semibold text-slate-400 uppercase tracking-wider">Navigation</h3>[m
+[32m+[m[32m                <a href="dashboard.html" class="sidebar-link">[m
+[32m+[m[32m                    <i data-lucide="layout-dashboard" class="w-5 h-5"></i>[m
+[32m+[m[32m                    <span>Dashboard</span>[m
+[32m+[m[32m                </a>[m
+[32m+[m[32m                <a href="price_prediction.html" class="sidebar-link active">[m
+[32m+[m[32m                    <i data-lucide="dollar-sign" class="w-5 h-5"></i>[m
+[32m+[m[32m                    <span>Price Prediction</span>[m
+[32m+[m[32m                </a>[m
+[32m+[m[32m                <a href="data_management.html" class="sidebar-link">[m
+[32m+[m[32m                    <i data-lucide="database" class="w-5 h-5"></i>[m
+[32m+[m[32m                    <span>Data Management</span>[m
+[32m+[m[32m                </a>[m
+[32m+[m[32m            </nav>[m
+[32m+[m
+[32m+[m[32m            <div class="p-4 border-t border-slate-200">[m
+[32m+[m[32m                <div class="flex items-center justify-between">[m
+[32m+[m[32m                    <div class="flex items-center gap-3">[m
+[32m+[m[32m                        <div class="w-10 h-10 rounded-full bg-indigo-200 text-indigo-700 flex items-center justify-center font-bold">[m
+[32m+[m[32m                           TW[m
+[32m+[m[32m                        </div>[m
+[32m+[m[32m                        <div>[m
+[32m+[m[32m                            <p class="font-semibold text-sm">thereal whyadhyou</p>[m
+[32m+[m[32m                            <p class="text-xs text-slate-500">therealwhyadhyou@gmail.com</p>[m
+[32m+[m[32m                        </div>[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                    <button id="logout-button" class="text-slate-500 hover:text-slate-800">[m
+[32m+[m[32m                         <i data-lucide="log-out" class="w-5 h-5"></i>[m
+[32m+[m[32m                    </button>[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m            </div>[m
+[32m+[m[32m        </aside>[m
+[32m+[m
+[32m+[m[32m        <!-- Main Content Area -->[m
+[32m+[m[32m        <main class="flex-1 overflow-y-auto p-8">[m
+[32m+[m[32m            <div id="prediction-page-container">[m
+[32m+[m[32m                 <!-- Prediction Form -->[m
+[32m+[m[32m                 <div id="prediction-form-content">[m
+[32m+[m[32m                    <h1 class="text-3xl font-bold mb-1">AI Price Prediction</h1>[m
+[32m+[m[32m                    <p class="text-slate-500 mb-8">Get accurate price forecasts using advanced machine learning</p>[m
+[32m+[m[32m                    <div class="max-w-4xl mx-auto">[m
+[32m+[m[32m                        <div class="bg-white p-8 rounded-2xl shadow-sm">[m
+[32m+[m[32m                            <div id="prediction-error" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg relative mb-6" role="alert">[m
+[32m+[m[32m                                <strong class="font-bold">Error:</strong>[m
+[32m+[m[32m                                <span class="block sm:inline">Please fill in all required fields.</span>[m
+[32m+[m[32m                            </div>[m
+[32m+[m[32m                            <h3 class="text-lg font-semibold mb-6 flex items-center"><i data-lucide="sliders-horizontal" class="w-5 h-5 mr-3 text-indigo-500"></i>Prediction Parameters</h3>[m
+[32m+[m[32m                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">[m
+[32m+[m[32m                                <div><label for="item-name" class="block text-sm font-medium text-slate-700 mb-1">Item Name *</label><input type="text" id="item-name" class="w-full px-4 py-2.5 border border-slate-200 rounded-lg" placeholder="e.g., iPhone 13"></div>[m
+[32m+[m[32m                                <div><label for="category" class="block text-sm font-medium text-slate-700 mb-1">Category *</label><select id="category" class="w-full px-4 py-2.5 border border-slate-200 rounded-lg bg-white"><option value="">Select category</option><option>Electronics</option><option>Clothing</option><option>Automotive</option><option>Food & Beverages</option><option>Other</option></select></div>[m
+[32m+[m[32m                                <div><label for="hist-price" class="block text-sm font-medium text-slate-700 mb-1">Historical Price ($) *</label><input type="number" id="hist-price" class="w-full px-4 py-2.5 border border-slate-200 rounded-lg" placeholder="299.99"></div>[m
+[32m+[m[32m                                <div><label for="market-demand" class="block text-sm font-medium text-slate-700 mb-1">Market Demand (1-10) *</label><input type="number" id="market-demand" min="1" max="10" class="w-full px-4 py-2.5 border border-slate-200 rounded-lg" placeholder="7"></div>[m
+[32m+[m[32m                                <div class="md:col-span-2"><label for="seasonal-factor" class="block text-sm font-medium text-slate-700 mb-1">Seasonal Factor</label><select id="seasonal-factor" class="w-full md:w-1/2 px-4 py-2.5 border border-slate-200 rounded-lg bg-white"><option value="0.5x">Off-season (0.5x)</option><option value="1.0x" selected>Normal (1.0x)</option><option value="1.5x">Peak season (1.5x)</option><option value="2.0x">High demand (2.0x)</option></select></div>[m
+[32m+[m[32m                            </div>[m
+[32m+[m[32m                            <div class="mt-8 text-right"><button id="generate-prediction-btn" class="inline-flex items-center justify-center gap-2 py-3 px-6 bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-semibold rounded-lg shadow-md hover:from-indigo-600 hover:to-purple-600 transition-all w-48"><span class="btn-text">Generate Prediction</span></button></div>[m
+[32m+[m[32m                        </div>[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m                <!-- Prediction Results -->[m
+[32m+[m[32m                <div id="prediction-results-content" class="hidden">[m
+[32m+[m[32m                     <button id="new-prediction-btn" class="flex items-center text-sm font-medium text-slate-600 hover:text-indigo-600 mb-6">[m
+[32m+[m[32m                        <i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i>[m
+[32m+[m[32m                        New Prediction[m
+[32m+[m[32m                    </button>[m
+[32m+[m[32m                    <h1 class="text-3xl font-bold mb-1">Prediction Results</h1>[m
+[32m+[m[32m                    <p class="text-slate-500 mb-8">AI-powered price forecast for your item</p>[m
+[32m+[m
+[32m+[m[32m                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">[m
+[32m+[m[32m                        <div class="lg:col-span-2 space-y-8">[m
+[32m+[m[32m                            <!-- Price -->[m
+[32m+[m[32m                            <div class="bg-white p-6 rounded-2xl shadow-sm">[m
+[32m+[m[32m                                <h3 class="font-semibold text-slate-600 mb-4">Price Prediction</h3>[m
+[32m+[m[32m                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">[m
+[32m+[m[32m                                    <div class="text-center">[m
+[32m+[m[32m                                        <p id="result-item-name" class="font-semibold text-lg"></p>[m
+[32m+[m[32m                                        <p id="result-price" class="text-6xl font-bold text-indigo-600 my-2"></p>[m
+[32m+[m[32m                                        <p id="result-confidence" class="text-sm font-medium text-green-600"></p>[m
+[32m+[m[32m                                    </div>[m
+[32m+[m[32m                                    <div class="flex justify-around">[m
+[32m+[m[32m                                        <div class="text-center"><p class="text-sm text-slate-500">Historical Price</p><p id="result-hist-price" class="font-bold text-2xl mt-1"></p></div>[m
+[32m+[m[32m                                        <div class="text-center"><p class="text-sm text-slate-500">Price Change</p><p id="result-price-change" class="font-bold text-2xl mt-1"></p></div>[m
+[32m+[m[32m                                    </div>[m
+[32m+[m[32m                                </div>[m
+[32m+[m[32m                            </div>[m
+[32m+[m[32m                            <!-- Analysis -->[m
+[32m+[m[32m                            <div class="bg-white p-6 rounded-2xl shadow-sm">[m
+[32m+[m[32m                                <h3 class="font-semibold text-slate-600 mb-3 flex items-center"><i data-lucide="line-chart" class="w-5 h-5 mr-2 text-indigo-500"></i>Market Analysis</h3>[m
+[32m+[m[32m                                <p id="market-analysis-text" class="text-slate-600 text-sm leading-6"></p>[m
+[32m+[m[32m                            </div>[m
+[32m+[m[32m                        </div>[m
+[32m+[m[32m                        <div class="space-y-8">[m
+[32m+[m[32m                            <!-- Parameters -->[m
+[32m+[m[32m                            <div class="bg-white p-6 rounded-2xl shadow-sm">[m
+[32m+[m[32m                                <h3 class="font-semibold text-slate-600 mb-4">Input Parameters</h3>[m
+[32m+[m[32m                                <ul class="space-y-3 text-sm">[m
+[32m+[m[32m                                    <li class="flex justify-between"><span>Category</span><strong id="result-category" class="text-slate-800"></strong></li>[m
+[32m+[m[32m                                    <li class="flex justify-between"><span>Market Demand</span><strong id="result-demand" class="text-slate-800"></strong></li>[m
+[32m+[m[32m                                    <li class="flex justify-between"><span>Seasonal Factor</span><strong id="result-season" class="text-slate-800"></strong></li>[m
+[32m+[m[32m                                </ul>[m
+[32m+[m[32m                            </div>[m
+[32m+[m[32m                            <!-- Key Factors -->[m
+[32m+[m[32m                            <div class="bg-white p-6 rounded-2xl shadow-sm">[m
+[32m+[m[32m                                <h3 class="font-semibold text-slate-600 mb-4">Key Factors</h3>[m
+[32m+[m[32m                                <ul class="space-y-3 text-sm text-slate-600">[m
+[32m+[m[32m                                    <li class="flex items-start"><i data-lucide="check-circle-2" class="w-4 h-4 mr-2 mt-0.5 text-green-500 flex-shrink-0"></i>Current market demand level</li>[m
+[32m+[m[32m                                    <li class="flex items-start"><i data-lucide="check-circle-2" class="w-4 h-4 mr-2 mt-0.5 text-green-500 flex-shrink-0"></i>Seasonal trends affecting pricing</li>[m
+[32m+[m[32m                                    <li class="flex items-start"><i data-lucide="check-circle-2" class="w-4 h-4 mr-2 mt-0.5 text-green-500 flex-shrink-0"></i>Recent sales data for similar products</li>[m
+[32m+[m[32m                                    <li class="flex items-start"><i data-lucide="check-circle-2" class="w-4 h-4 mr-2 mt-0.5 text-green-500 flex-shrink-0"></i>Potential supply chain issues</li>[m
+[32m+[m[32m                                </ul>[m
+[32m+[m[32m                            </div>[m
+[32m+[m[32m                        </div>[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m            </div>[m
+[32m+[m[32m        </main>[m
+[32m+[m[32m    </div>[m
+[32m+[m
+[32m+[m[32m    <script src="js/script.js"></script>[m
+[32m+[m[32m</body>[m
+[32m+[m[32m</html>[m
+[1mdiff --git a/frontend/singleunit/PricePredictpro.html b/frontend/singleunit/PricePredictpro.html[m
+[1mnew file mode 100644[m
+[1mindex 0000000..f95a036[m
+[1m--- /dev/null[m
+[1m+++ b/frontend/singleunit/PricePredictpro.html[m
+[36m@@ -0,0 +1,460 @@[m
+[32m+[m[32m<!DOCTYPE html>[m
+[32m+[m[32m<html lang="en">[m
+[32m+[m[32m<head>[m
+[32m+[m[32m    <meta charset="UTF-8">[m
+[32m+[m[32m    <meta name="viewport" content="width=device-width, initial-scale=1.0">[m
+[32m+[m[32m    <title>PricePredict Pro</title>[m
+[32m+[m[32m    <script src="https://cdn.tailwindcss.com"></script>[m
+[32m+[m[32m    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">[m
+[32m+[m[32m    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>[m
+[32m+[m[32m    <script src="https://unpkg.com/lucide@latest"></script>[m
+[32m+[m[32m    <style>[m
+[32m+[m[32m        body {[m
+[32m+[m[32m            font-family: 'Inter', sans-serif;[m
+[32m+[m[32m        }[m
+[32m+[m[32m        .sidebar-link {[m
+[32m+[m[32m            display: flex;[m
+[32m+[m[32m            align-items: center;[m
+[32m+[m[32m            padding: 0.75rem 1rem;[m
+[32m+[m[32m            border-radius: 0.5rem;[m
+[32m+[m[32m            color: #475569; /* text-slate-600 */[m
+[32m+[m[32m            font-weight: 500;[m
+[32m+[m[32m            transition: all 0.2s ease-in-out;[m
+[32m+[m[32m            cursor: pointer;[m
+[32m+[m[32m        }[m
+[32m+[m[32m        .sidebar-link:hover {[m
+[32m+[m[32m            background-color: #f1f5f9; /* bg-slate-100 */[m
+[32m+[m[32m            color: #0f172a; /* text-slate-900 */[m
+[32m+[m[32m        }[m
+[32m+[m[32m        .sidebar-link.active {[m
+[32m+[m[32m            background-color: #818cf8; /* bg-indigo-400 */[m
+[32m+[m[32m            color: white;[m
+[32m+[m[32m            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);[m
+[32m+[m[32m        }[m
+[32m+[m[32m        .sidebar-link.active i {[m
+[32m+[m[32m             color: white;[m
+[32m+[m[32m        }[m
+[32m+[m[32m        .sidebar-link i {[m
+[32m+[m[32m            margin-right: 0.75rem;[m
+[32m+[m[32m            color: #64748b; /* text-slate-500 */[m
+[32m+[m[32m        }[m
+[32m+[m[32m        .spinner {[m
+[32m+[m[32m            animation: spin 1s linear infinite;[m
+[32m+[m[32m        }[m
+[32m+[m[32m        @keyframes spin {[m
+[32m+[m[32m            0% { transform: rotate(0deg); }[m
+[32m+[m[32m            100% { transform: rotate(360deg); }[m
+[32m+[m[32m        }[m
+[32m+[m[32m    </style>[m
+[32m+[m[32m</head>[m
+[32m+[m[32m<body class="bg-slate-50 text-slate-800">[m
+[32m+[m
+[32m+[m[32m    <!-- Login Page -->[m
+[32m+[m[32m    <div id="login-page" class="flex items-center justify-center min-h-screen">[m
+[32m+[m[32m        <div class="w-full max-w-md p-8 space-y-8 bg-white rounded-2xl shadow-lg">[m
+[32m+[m[32m            <div class="text-center">[m
+[32m+[m[32m                <div class="inline-flex items-center justify-center bg-slate-800 text-white w-16 h-16 rounded-full mb-4">[m
+[32m+[m[32m                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 12v5h10"/><path d="M11 12v-2h2v2"/><path d="M11 7V6h2v1"/><path d="M15 12v-1h2v1"/><path d="m7 21-4-4"/><path d="m21 21-4-4"/></svg>[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m                <h1 class="text-3xl font-bold text-slate-800">Welcome to PricePredict Pro</h1>[m
+[32m+[m[32m                <p class="mt-2 text-slate-500">Sign in to continue</p>[m
+[32m+[m[32m            </div>[m
+[32m+[m[41m            [m
+[32m+[m[32m            <button class="w-full flex items-center justify-center gap-2 py-3 px-4 text-slate-700 font-medium border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors">[m
+[32m+[m[32m                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-round"><path d="M15 6.5C15 8.43 13.43 10 11.5 10S8 8.43 8 6.5S9.57 3 11.5 3S15 4.57 15 6.5Z"/><path d="M11.5 10c-3.87 0-7 3.13-7 7h14c0-3.87-3.13-7-7-7Z"/></svg>[m
+[32m+[m[32m                Continue with Google[m
+[32m+[m[32m            </button>[m
+[32m+[m[41m    [m
+[32m+[m[32m            <div class="flex items-center justify-center">[m
+[32m+[m[32m                <div class="flex-grow border-t border-slate-200"></div>[m
+[32m+[m[32m                <span class="px-4 text-xs font-medium text-slate-400">OR</span>[m
+[32m+[m[32m                <div class="flex-grow border-t border-slate-200"></div>[m
+[32m+[m[32m            </div>[m
+[32m+[m[41m    [m
+[32m+[m[32m            <div class="space-y-6">[m
+[32m+[m[32m                <div>[m
+[32m+[m[32m                    <label for="email" class="text-sm font-medium text-slate-700">Email</label>[m
+[32m+[m[32m                    <div class="mt-1 relative">[m
+[32m+[m[32m                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">[m
+[32m+[m[32m                            <i data-lucide="mail" class="w-5 h-5 text-slate-400"></i>[m
+[32m+[m[32m                        </div>[m
+[32m+[m[32m                        <input type="email" id="email" class="w-full pl-10 pr-4 py-2.5 border border-slate-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="you@example.com">[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m                <div>[m
+[32m+[m[32m                    <label for="password" class="text-sm font-medium text-slate-700">Password</label>[m
+[32m+[m[32m                     <div class="mt-1 relative">[m
+[32m+[m[32m                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">[m
+[32m+[m[32m                            <i data-lucide="lock" class="w-5 h-5 text-slate-400"></i>[m
+[32m+[m[32m                        </div>[m
+[32m+[m[32m                        <input type="password" id="password" class="w-full pl-10 pr-4 py-2.5 border border-slate-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="••••••••">[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m                <button id="login-button" class="w-full py-3 px-4 bg-slate-800 text-white font-semibold rounded-lg hover:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-800 transition-colors">[m
+[32m+[m[32m                    Sign In[m
+[32m+[m[32m                </button>[m
+[32m+[m[32m            </div>[m
+[32m+[m[41m    [m
+[32m+[m[32m            <div class="text-sm text-center">[m
+[32m+[m[32m                <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">Forgot password?</a>[m
+[32m+[m[32m            </div>[m
+[32m+[m[41m    [m
+[32m+[m[32m            <p class="text-sm text-center text-slate-500">[m
+[32m+[m[32m                Need an account? <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">Sign up</a>[m
+[32m+[m[32m            </p>[m
+[32m+[m[32m        </div>[m
+[32m+[m[32m    </div>[m
+[32m+[m
+[32m+[m[32m    <!-- Main Application Container (hidden by default) -->[m
+[32m+[m[32m    <div id="app-container" class="hidden h-screen">[m
+[32m+[m[32m        <div class="flex h-full">[m
+[32m+[m[32m            <!-- Sidebar Navigation -->[m
+[32m+[m[32m            <aside class="w-64 bg-white border-r border-slate-200 flex flex-col">[m
+[32m+[m[32m                <div class="p-6">[m
+[32m+[m[32m                    <div class="flex items-center gap-3">[m
+[32m+[m[32m                        <div class="bg-slate-800 text-white p-2 rounded-lg">[m
+[32m+[m[32m                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 12v5h10"/><path d="M11 12v-2h2v2"/><path d="M11 7V6h2v1"/><path d="M15 12v-1h2v1"/><path d="m7 21-4-4"/><path d="m21 21-4-4"/></svg>[m
+[32m+[m[32m                        </div>[m
+[32m+[m[32m                        <div>[m
+[32m+[m[32m                            <h2 class="font-bold text-lg text-slate-800">PricePredict Pro</h2>[m
+[32m+[m[32m                            <p class="text-xs text-slate-500">Advanced Analytics Platform</p>[m
+[32m+[m[32m                        </div>[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                </div>[m
+[32m+[m
+[32m+[m[32m                <nav class="flex-1 px-4 py-2">[m
+[32m+[m[32m                    <h3 class="px-4 pt-2 pb-2 text-xs font-semibold text-slate-400 uppercase tracking-wider">Navigation</h3>[m
+[32m+[m[32m                    <a data-page="dashboard" class="sidebar-link active">[m
+[32m+[m[32m                        <i data-lucide="layout-dashboard" class="w-5 h-5"></i>[m
+[32m+[m[32m                        <span>Dashboard</span>[m
+[32m+[m[32m                    </a>[m
+[32m+[m[32m                    <a data-page="prediction" class="sidebar-link">[m
+[32m+[m[32m                        <i data-lucide="dollar-sign" class="w-5 h-5"></i>[m
+[32m+[m[32m                        <span>Price Prediction</span>[m
+[32m+[m[32m                    </a>[m
+[32m+[m[32m                    <a data-page="data" class="sidebar-link">[m
+[32m+[m[32m                        <i data-lucide="database" class="w-5 h-5"></i>[m
+[32m+[m[32m                        <span>Data Management</span>[m
+[32m+[m[32m                    </a>[m
+[32m+[m[32m                </nav>[m
+[32m+[m
+[32m+[m[32m                <div class="p-4 border-t border-slate-200">[m
+[32m+[m[32m                    <div class="flex items-center justify-between">[m
+[32m+[m[32m                        <div class="flex items-center gap-3">[m
+[32m+[m[32m                            <div class="w-10 h-10 rounded-full bg-indigo-200 text-indigo-700 flex items-center justify-center font-bold">[m
+[32m+[m[32m                               TW[m
+[32m+[m[32m                            </div>[m
+[32m+[m[32m                            <div>[m
+[32m+[m[32m                                <p class="font-semibold text-sm">thereal whyadhyou</p>[m
+[32m+[m[32m                                <p class="text-xs text-slate-500">therealwhyadhyou@gmail.com</p>[m
+[32m+[m[32m                            </div>[m
+[32m+[m[32m                        </div>[m
+[32m+[m[32m                        <button id="logout-button" class="text-slate-500 hover:text-slate-800">[m
+[32m+[m[32m                             <i data-lucide="log-out" class="w-5 h-5"></i>[m
+[32m+[m[32m                        </button>[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m            </aside>[m
+[32m+[m
+[32m+[m[32m            <!-- Main Content Area -->[m
+[32m+[m[32m            <main class="flex-1 overflow-y-auto p-8">[m
+[32m+[m[41m                [m
+[32m+[m[32m                <!-- Dashboard Content -->[m
+[32m+[m[32m                <div id="dashboard-page-content">[m
+[32m+[m[32m                    <h1 class="text-3xl font-bold mb-1">Analytics Dashboard</h1>[m
+[32m+[m[32m                    <p class="text-slate-500 mb-8">Monitor your price predictions and data insights</p>[m
+[32m+[m[32m                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">[m
+[32m+[m[32m                        <div class="bg-white p-6 rounded-2xl shadow-sm flex items-start justify-between"><div><p class="text-sm font-medium text-slate-500">Total Predictions</p><p class="text-3xl font-bold mt-2">6</p><p class="text-xs text-green-500 mt-2 flex items-center"><i data-lucide="arrow-up-right" class="w-3 h-3 mr-1"></i> 12% from last month</p></div><div class="bg-blue-100 text-blue-600 p-3 rounded-xl"><i data-lucide="target" class="w-6 h-6"></i></div></div>[m
+[32m+[m[32m                        <div class="bg-white p-6 rounded-2xl shadow-sm flex items-start justify-between"><div><p class="text-sm font-medium text-slate-500">Avg Confidence</p><p class="text-3xl font-bold mt-2">69%</p><p class="text-xs text-green-500 mt-2 flex items-center"><i data-lucide="arrow-up-right" class="w-3 h-3 mr-1"></i> 5% from last month</p></div><div class="bg-green-100 text-green-600 p-3 rounded-xl"><i data-lucide="trending-up" class="w-6 h-6"></i></div></div>[m
+[32m+[m[32m                        <div class="bg-white p-6 rounded-2xl shadow-sm flex items-start justify-between"><div><p class="text-sm font-medium text-slate-500">Avg Price</p><p class="text-3xl font-bold mt-2">$8959.46</p><p class="text-xs text-red-500 mt-2 flex items-center"><i data-lucide="arrow-down-right" class="w-3 h-3 mr-1"></i> 3% from last month</p></div><div class="bg-purple-100 text-purple-600 p-3 rounded-xl"><i data-lucide="dollar-sign" class="w-6 h-6"></i></div></div>[m
+[32m+[m[32m                        <div class="bg-white p-6 rounded-2xl shadow-sm flex items-start justify-between"><div><p class="text-sm font-medium text-slate-500">Data Files</p><p class="text-3xl font-bold mt-2">3</p><p class="text-xs text-slate-500 mt-2 flex items-center"><i data-lucide="minus" class="w-3 h-3 mr-1"></i> 0% from last month</p></div><div class="bg-orange-100 text-orange-600 p-3 rounded-xl"><i data-lucide="file-stack" class="w-6 h-6"></i></div></div>[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                    <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 mb-8">[m
+[32m+[m[32m                        <div class="lg:col-span-3 bg-white p-6 rounded-2xl shadow-sm"><h3 class="text-lg font-semibold mb-4">Price Predictions Comparison</h3><div class="h-80"><canvas id="barChart"></canvas></div></div>[m
+[32m+[m[32m                        <div class="lg:col-span-2 bg-white p-6 rounded-2xl shadow-sm"><h3 class="text-lg font-semibold mb-4">Predictions by Category</h3><div class="h-80"><canvas id="pieChart"></canvas></div></div>[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">[m
+[32m+[m[32m                        <div class="bg-white p-6 rounded-2xl shadow-sm">[m
+[32m+[m[32m                            <h3 class="text-lg font-semibold mb-4 flex items-center"><i data-lucide="history" class="w-5 h-5 mr-2 text-slate-500"></i>Recent Predictions</h3>[m
+[32m+[m[32m                            <ul class="space-y-4">[m
+[32m+[m[32m                                <li class="flex justify-between items-center"><div><p class="font-medium">iPhone 13</p><p class="text-sm text-slate-500">Electronics</p></div><div class="text-right"><p class="font-semibold">$1318.25</p><p class="text-xs text-slate-500">0.85% confidence</p></div></li>[m
+[32m+[m[32m                                <li class="flex justify-between items-center"><div><p class="font-medium">Nike Air Jordan</p><p class="text-sm text-slate-500">Clothing</p></div><div class="text-right"><p class="font-semibold">$220</p><span class="text-xs bg-green-100 text-green-700 font-semibold px-2 py-1 rounded-full">92% confidence</span></div></li>[m
+[32m+[m[32m                                <li class="flex justify-between items-center"><div><p class="font-medium">Tesla Model Y</p><p class="text-sm text-slate-500">Automotive</p></div><div class="text-right"><p class="font-semibold">$48500</p><span class="text-xs bg-yellow-100 text-yellow-700 font-semibold px-2 py-1 rounded-full">78% confidence</span></div></li>[m
+[32m+[m[32m                                <li class="flex justify-between items-center"><div><p class="font-medium">MacBook Pro M3</p><p class="text-sm text-slate-500">Electronics</p></div><div class="text-right"><p class="font-semibold">$2550</p><span class="text-xs bg-green-100 text-green-700 font-semibold px-2 py-1 rounded-full">85% confidence</span></div></li>[m
+[32m+[m[32m                                <li class="flex justify-between items-center"><div><p class="font-medium">Organic Coffee Beans</p><p class="text-sm text-slate-500">Food</p></div><div class="text-right"><p class="font-semibold">$18.5</p><span class="text-xs bg-yellow-100 text-yellow-700 font-semibold px-2 py-1 rounded-full">73% confidence</span></div></li>[m
+[32m+[m[32m                            </ul>[m
+[32m+[m[32m                        </div>[m
+[32m+[m[32m                        <div class="bg-white p-6 rounded-2xl shadow-sm">[m
+[32m+[m[32m                            <h3 class="text-lg font-semibold mb-4 flex items-center"><i data-lucide="upload-cloud" class="w-5 h-5 mr-2 text-slate-500"></i>Recent Uploads</h3>[m
+[32m+[m[32m                            <ul class="space-y-4">[m
+[32m+[m[32m                                <li class="flex justify-between items-center"><div><p class="font-medium">sales_data_2024.csv</p><p class="text-sm text-slate-500">1250 records</p></div><span class="text-xs text-white bg-slate-700 font-semibold px-2 py-1 rounded-full">completed</span></li>[m
+[32m+[m[32m                                <li class="flex justify-between items-center"><div><p class="font-medium">product_inventory.xlsx</p><p class="text-sm text-slate-500">845 records</p></div><span class="text-xs text-white bg-slate-700 font-semibold px-2 py-1 rounded-full">completed</span></li>[m
+[32m+[m[32m                                <li class="flex justify-between items-center"><div><p class="font-medium">market_research.csv</p><p class="text-sm text-slate-500">records</p></div><span class="text-xs text-blue-700 bg-blue-100 font-semibold px-2 py-1 rounded-full">processing</span></li>[m
+[32m+[m[32m                            </ul>[m
+[32m+[m[32m                        </div>[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                </div>[m
+[32m+[m
+[32m+[m[32m                <!-- Price Prediction Content -->[m
+[32m+[m[32m                <div id="prediction-page-container" class="hidden">[m
+[32m+[m[32m                    <!-- Prediction Form -->[m
+[32m+[m[32m                    <div id="prediction-form-content">[m
+[32m+[m[32m                        <h1 class="text-3xl font-bold mb-1">AI Price Prediction</h1>[m
+[32m+[m[32m                        <p class="text-slate-500 mb-8">Get accurate price forecasts using advanced machine learning</p>[m
+[32m+[m[32m                        <div class="max-w-4xl mx-auto">[m
+[32m+[m[32m                            <div class="bg-white p-8 rounded-2xl shadow-sm">[m
+[32m+[m[32m                                <div id="prediction-error" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg relative mb-6" role="alert">[m
+[32m+[m[32m                                    <strong class="font-bold">Error:</strong>[m
+[32m+[m[32m                                    <span class="block sm:inline">Please fill in all required fields.</span>[m
+[32m+[m[32m                                </div>[m
+[32m+[m[32m                                <h3 class="text-lg font-semibold mb-6 flex items-center"><i data-lucide="sliders-horizontal" class="w-5 h-5 mr-3 text-indigo-500"></i>Prediction Parameters</h3>[m
+[32m+[m[32m                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">[m
+[32m+[m[32m                                    <div><label for="item-name" class="block text-sm font-medium text-slate-700 mb-1">Item Name *</label><input type="text" id="item-name" class="w-full px-4 py-2.5 border border-slate-200 rounded-lg" placeholder="e.g., iPhone 13"></div>[m
+[32m+[m[32m                                    <div><label for="category" class="block text-sm font-medium text-slate-700 mb-1">Category *</label><select id="category" class="w-full px-4 py-2.5 border border-slate-200 rounded-lg bg-white"><option value="">Select category</option><option>Electronics</option><option>Clothing</option><option>Automotive</option><option>Food & Beverages</option><option>Other</option></select></div>[m
+[32m+[m[32m                                    <div><label for="hist-price" class="block text-sm font-medium text-slate-700 mb-1">Historical Price ($) *</label><input type="number" id="hist-price" class="w-full px-4 py-2.5 border border-slate-200 rounded-lg" placeholder="299.99"></div>[m
+[32m+[m[32m                                    <div><label for="market-demand" class="block text-sm font-medium text-slate-700 mb-1">Market Demand (1-10) *</label><input type="number" id="market-demand" min="1" max="10" class="w-full px-4 py-2.5 border border-slate-200 rounded-lg" placeholder="7"></div>[m
+[32m+[m[32m                                    <div class="md:col-span-2"><label for="seasonal-factor" class="block text-sm font-medium text-slate-700 mb-1">Seasonal Factor</label><select id="seasonal-factor" class="w-full md:w-1/2 px-4 py-2.5 border border-slate-200 rounded-lg bg-white"><option value="0.5x">Off-season (0.5x)</option><option value="1.0x" selected>Normal (1.0x)</option><option value="1.5x">Peak season (1.5x)</option><option value="2.0x">High demand (2.0x)</option></select></div>[m
+[32m+[m[32m                                </div>[m
+[32m+[m[32m                                <div class="mt-8 text-right"><button id="generate-prediction-btn" class="inline-flex items-center justify-center gap-2 py-3 px-6 bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-semibold rounded-lg shadow-md hover:from-indigo-600 hover:to-purple-600 transition-all w-48"><span class="btn-text">Generate Prediction</span></button></div>[m
+[32m+[m[32m                            </div>[m
+[32m+[m[32m                        </div>[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                    <!-- Prediction Results -->[m
+[32m+[m[32m                    <div id="prediction-results-content" class="hidden">[m
+[32m+[m[32m                         <button id="new-prediction-btn" class="flex items-center text-sm font-medium text-slate-600 hover:text-indigo-600 mb-6">[m
+[32m+[m[32m                            <i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i>[m
+[32m+[m[32m                            New Prediction[m
+[32m+[m[32m                        </button>[m
+[32m+[m[32m                        <h1 class="text-3xl font-bold mb-1">Prediction Results</h1>[m
+[32m+[m[32m                        <p class="text-slate-500 mb-8">AI-powered price forecast for your item</p>[m
+[32m+[m
+[32m+[m[32m                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">[m
+[32m+[m[32m                            <div class="lg:col-span-2 space-y-8">[m
+[32m+[m[32m                                <!-- Price -->[m
+[32m+[m[32m                                <div class="bg-white p-6 rounded-2xl shadow-sm">[m
+[32m+[m[32m                                    <h3 class="font-semibold text-slate-600 mb-4">Price Prediction</h3>[m
+[32m+[m[32m                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">[m
+[32m+[m[32m                                        <div class="text-center">[m
+[32m+[m[32m                                            <p id="result-item-name" class="font-semibold text-lg">iPhone 13</p>[m
+[32m+[m[32m                                            <p id="result-price" class="text-6xl font-bold text-indigo-600 my-2">$274.50</p>[m
+[32m+[m[32m                                            <p id="result-confidence" class="text-sm font-medium text-green-600">0.75% Confidence</p>[m
+[32m+[m[32m                                        </div>[m
+[32m+[m[32m                                        <div class="flex justify-around">[m
+[32m+[m[32m                                            <div class="text-center"><p class="text-sm text-slate-500">Historical Price</p><p id="result-hist-price" class="font-bold text-2xl mt-1">$299</p></div>[m
+[32m+[m[32m                                            <div class="text-center"><p class="text-sm text-slate-500">Price Change</p><p id="result-price-change" class="font-bold text-2xl mt-1 text-red-500">-8.2%</p></div>[m
+[32m+[m[32m                                        </div>[m
+[32m+[m[32m                                    </div>[m
+[32m+[m[32m                                </div>[m
+[32m+[m[32m                                <!-- Analysis -->[m
+[32m+[m[32m                                <div class="bg-white p-6 rounded-2xl shadow-sm">[m
+[32m+[m[32m                                    <h3 class="font-semibold text-slate-600 mb-3 flex items-center"><i data-lucide="line-chart" class="w-5 h-5 mr-2 text-indigo-500"></i>Market Analysis</h3>[m
+[32m+[m[32m                                    <p class="text-slate-600 text-sm leading-6">The iPhone 13 has seen stable global demand, but with a rating of 5/10 in market demand, it indicates moderate interest. The seasonal factor of 0.5 suggests a mild impact on pricing, indicating that demand may decrease slightly in off-peak months. Historical pricing shows a solid base at $299, but a predicted decline to $274.5 factors in current market saturation and lower new model demand.</p>[m
+[32m+[m[32m                                </div>[m
+[32m+[m[32m                            </div>[m
+[32m+[m[32m                            <div class="space-y-8">[m
+[32m+[m[32m                                <!-- Parameters -->[m
+[32m+[m[32m                                <div class="bg-white p-6 rounded-2xl shadow-sm">[m
+[32m+[m[32m                                    <h3 class="font-semibold text-slate-600 mb-4">Input Parameters</h3>[m
+[32m+[m[32m                                    <ul class="space-y-3 text-sm">[m
+[32m+[m[32m                                        <li class="flex justify-between"><span>Category</span><strong id="result-category" class="text-slate-800">Electronics</strong></li>[m
+[32m+[m[32m                                        <li class="flex justify-between"><span>Market Demand</span><strong id="result-demand" class="text-slate-800">5/10</strong></li>[m
+[32m+[m[32m                                        <li class="flex justify-between"><span>Seasonal Factor</span><strong id="result-season" class="text-slate-800">0.5x</strong></li>[m
+[32m+[m[32m                                    </ul>[m
+[32m+[m[32m                                </div>[m
+[32m+[m[32m                                <!-- Key Factors -->[m
+[32m+[m[32m                                <div class="bg-white p-6 rounded-2xl shadow-sm">[m
+[32m+[m[32m                                    <h3 class="font-semibold text-slate-600 mb-4">Key Factors</h3>[m
+[32m+[m[32m                                    <ul class="space-y-3 text-sm text-slate-600">[m
+[32m+[m[32m                                        <li class="flex items-start"><i data-lucide="check-circle-2" class="w-4 h-4 mr-2 mt-0.5 text-green-500 flex-shrink-0"></i>Current market demand level</li>[m
+[32m+[m[32m                                        <li class="flex items-start"><i data-lucide="check-circle-2" class="w-4 h-4 mr-2 mt-0.5 text-green-500 flex-shrink-0"></i>Seasonal trends affecting electronics pricing</li>[m
+[32m+[m[32m                                        <li class="flex items-start"><i data-lucide="check-circle-2" class="w-4 h-4 mr-2 mt-0.5 text-green-500 flex-shrink-0"></i>Recent sales data for similar products</li>[m
+[32m+[m[32m                                        <li class="flex items-start"><i data-lucide="check-circle-2" class="w-4 h-4 mr-2 mt-0.5 text-green-500 flex-shrink-0"></i>Potential supply chain issues</li>[m
+[32m+[m[32m                                    </ul>[m
+[32m+[m[32m                                </div>[m
+[32m+[m[32m                            </div>[m
+[32m+[m[32m                        </div>[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                </div>[m
+[32m+[m
+[32m+[m[32m                <!-- Data Management Content -->[m
+[32m+[m[32m                <div id="data-page-content" class="hidden">[m
+[32m+[m[32m                     <h1 class="text-3xl font-bold mb-1">Data Management</h1>[m
+[32m+[m[32m                    <p class="text-slate-500 mb-8">Upload and manage your data files</p>[m
+[32m+[m[32m                    <div class="bg-white p-8 rounded-2xl shadow-sm mb-8">[m
+[32m+[m[32m                        <h3 class="text-lg font-semibold mb-6 flex items-center"><i data-lucide="upload-cloud" class="w-5 h-5 mr-3 text-indigo-500"></i>Upload New Data File</h3>[m
+[32m+[m[32m                        <div class="border-2 border-dashed border-slate-300 rounded-lg p-10 text-center"><div class="mx-auto w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center"><i data-lucide="upload" class="w-8 h-8 text-slate-500"></i></div><p class="mt-4 font-semibold text-slate-700" id="file-upload-text">Upload CSV or Excel File</p><p class="text-sm text-slate-500 mt-1">Drag and drop your file here or click to browse</p><input type="file" class="hidden" id="file-upload" accept=".csv,.xlsx,.xls"><label for="file-upload" class="mt-6 inline-block cursor-pointer py-2 px-5 bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-semibold rounded-lg shadow-md hover:from-indigo-600 hover:to-purple-600 transition-all">Choose File</label><p class="text-xs text-slate-400 mt-4">Supported formats: CSV, XLSX, XLS (Max 10MB)</p></div>[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                    <div class="bg-white p-8 rounded-2xl shadow-sm">[m
+[32m+[m[32m                        <div class="flex justify-between items-center mb-6"><h3 class="text-lg font-semibold flex items-center"><i data-lucide="file-stack" class="w-5 h-5 mr-3 text-indigo-500"></i>Uploaded Files (3)</h3></div>[m
+[32m+[m[32m                        <div class="overflow-x-auto">[m
+[32m+[m[32m                            <table class="w-full text-sm text-left">[m
+[32m+[m[32m                                <thead class="bg-slate-50 text-slate-500 uppercase text-xs"><tr><th class="px-6 py-3 rounded-l-lg">File Name</th><th class="px-6 py-3">Type</th><th class="px-6 py-3">Status</th><th class="px-6 py-3">Records</th><th class="px-6 py-3">Upload Date</th><th class="px-6 py-3 rounded-r-lg">Actions</th></tr></thead>[m
+[32m+[m[32m                                <tbody>[m
+[32m+[m[32m                                    <tr class="border-b"><td class="px-6 py-4 font-medium">sales_data_2024.csv</td><td class="px-6 py-4">CSV</td><td class="px-6 py-4"><span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-1 rounded-full">Completed</span></td><td class="px-6 py-4">1250</td><td class="px-6 py-4">2025-09-12</td><td class="px-6 py-4"><button class="text-slate-500 hover:text-indigo-600">View</button></td></tr>[m
+[32m+[m[32m                                    <tr class="border-b"><td class="px-6 py-4 font-medium">product_inventory.xlsx</td><td class="px-6 py-4">XLSX</td><td class="px-6 py-4"><span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-1 rounded-full">Completed</span></td><td class="px-6 py-4">845</td><td class="px-6 py-4">2025-09-11</td><td class="px-6 py-4"><button class="text-slate-500 hover:text-indigo-600">View</button></td></tr>[m
+[32m+[m[32m                                    <tr><td class="px-6 py-4 font-medium">market_research.csv</td><td class="px-6 py-4">CSV</td><td class="px-6 py-4"><span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-1 rounded-full">Processing</span></td><td class="px-6 py-4">...</td><td class="px-6 py-4">2025-09-12</td><td class="px-6 py-4"><button class="text-slate-500 hover:text-indigo-600">View</button></td></tr>[m
+[32m+[m[32m                                </tbody>[m
+[32m+[m[32m                            </table>[m
+[32m+[m[32m                        </div>[m
+[32m+[m[32m                         <div class="mt-6 p-4 bg-slate-100 rounded-lg text-sm text-slate-600 flex items-start">[m
+[32m+[m[32m                            <i data-lucide="info" class="w-5 h-5 mr-3 text-slate-500 flex-shrink-0"></i>[m
+[32m+[m[32m                            <div><strong>File Processing:</strong> Uploaded files are automatically processed to extract data records. CSV files are parsed immediately, while Excel files may take a few moments to process.</div>[m
+[32m+[m[32m                        </div>[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                </div>[m
+[32m+[m
+[32m+[m[32m            </main>[m
+[32m+[m[32m        </div>[m
+[32m+[m[32m    </div>[m
+[32m+[m
+[32m+[m[32m    <script>[m
+[32m+[m[32m        document.addEventListener('DOMContentLoaded', () => {[m
+[32m+[m[32m            lucide.createIcons();[m
+[32m+[m
+[32m+[m[32m            const loginPage = document.getElementById('login-page');[m
+[32m+[m[32m            const appContainer = document.getElementById('app-container');[m
+[32m+[m[32m            const loginButton = document.getElementById('login-button');[m
+[32m+[m[32m            const logoutButton = document.getElementById('logout-button');[m
+[32m+[m[41m            [m
+[32m+[m[32m            // Page content containers[m
+[32m+[m[32m            const pageContents = {[m
+[32m+[m[32m                dashboard: document.getElementById('dashboard-page-content'),[m
+[32m+[m[32m                prediction: document.getElementById('prediction-page-container'),[m
+[32m+[m[32m                data: document.getElementById('data-page-content')[m
+[32m+[m[32m            };[m
+[32m+[m[32m            const navLinks = document.querySelectorAll('.sidebar-link');[m
+[32m+[m[41m            [m
+[32m+[m[32m            // Prediction page elements[m
+[32m+[m[32m            const predictionFormContent = document.getElementById('prediction-form-content');[m
+[32m+[m[32m            const predictionResultsContent = document.getElementById('prediction-results-content');[m
+[32m+[m[32m            const generatePredictionBtn = document.getElementById('generate-prediction-btn');[m
+[32m+[m[32m            const newPredictionBtn = document.getElementById('new-prediction-btn');[m
+[32m+[m[32m            const predictionError = document.getElementById('prediction-error');[m
+[32m+[m[32m            const formInputs = {[m
+[32m+[m[32m                itemName: document.getElementById('item-name'),[m
+[32m+[m[32m                category: document.getElementById('category'),[m
+[32m+[m[32m                histPrice: document.getElementById('hist-price'),[m
+[32m+[m[32m                marketDemand: document.getElementById('market-demand'),[m
+[32m+[m[32m            };[m
+[32m+[m
+[32m+[m[32m            // Data page elements[m
+[32m+[m[32m            const fileUpload = document.getElementById('file-upload');[m
+[32m+[m[32m            const fileUploadText = document.getElementById('file-upload-text');[m
+[32m+[m
+[32m+[m[32m            let barChartInstance;[m
+[32m+[m[32m            let pieChartInstance;[m
+[32m+[m
+[32m+[m[32m            function showPage(pageKey) {[m
+[32m+[m[32m                Object.values(pageContents).forEach(content => content.classList.add('hidden'));[m
+[32m+[m[32m                if (pageContents[pageKey]) {[m
+[32m+[m[32m                    pageContents[pageKey].classList.remove('hidden');[m
+[32m+[m[32m                }[m
+[32m+[m[32m                navLinks.forEach(link => {[m
+[32m+[m[32m                    link.classList.toggle('active', link.dataset.page === pageKey);[m
+[32m+[m[32m                });[m
+[32m+[m
+[32m+[m[32m                if (pageKey === 'dashboard') {[m
+[32m+[m[32m                    if (barChartInstance) barChartInstance.destroy();[m
+[32m+[m[32m                    if (pieChartInstance) pieChartInstance.destroy();[m
+[32m+[m[32m                    renderDashboardCharts();[m
+[32m+[m[32m                } else if (pageKey === 'prediction') {[m
+[32m+[m[32m                    // Reset prediction page to form view[m
+[32m+[m[32m                    predictionResultsContent.classList.add('hidden');[m
+[32m+[m[32m                    predictionFormContent.classList.remove('hidden');[m
+[32m+[m[32m                    predictionError.classList.add('hidden');[m
+[32m+[m[32m                }[m
+[32m+[m[32m            }[m
+[32m+[m
+[32m+[m[32m            // --- Event Listeners ---[m
+[32m+[m[32m            loginButton.addEventListener('click', () => {[m
+[32m+[m[32m                loginPage.classList.add('hidden');[m
+[32m+[m[32m                appContainer.classList.remove('hidden');[m
+[32m+[m[32m                appContainer.classList.add('flex');[m
+[32m+[m[32m                showPage('dashboard');[m
+[32m+[m[32m            });[m
+[32m+[m
+[32m+[m[32m            logoutButton.addEventListener('click', () => {[m
+[32m+[m[32m                appContainer.classList.add('hidden');[m
+[32m+[m[32m                appContainer.classList.remove('flex');[m
+[32m+[m[32m                loginPage.classList.remove('hidden');[m
+[32m+[m[32m            });[m
+[32m+[m
+[32m+[m[32m            navLinks.forEach(link => {[m
+[32m+[m[32m                link.addEventListener('click', () => showPage(link.dataset.page));[m
+[32m+[m[32m            });[m
+[32m+[m[41m            [m
+[32m+[m[32m            generatePredictionBtn.addEventListener('click', () => {[m
+[32m+[m[32m                // 1. Validate form[m
+[32m+[m[32m                const allFilled = Object.values(formInputs).every(input => input.value.trim() !== '');[m
+[32m+[m[32m                if (!allFilled) {[m
+[32m+[m[32m                    predictionError.classList.remove('hidden');[m
+[32m+[m[32m                    return;[m
+[32m+[m[32m                }[m
+[32m+[m[32m                predictionError.classList.add('hidden');[m
+[32m+[m
+[32m+[m[32m                // 2. Show loading state[m
+[32m+[m[32m                const btnText = generatePredictionBtn.querySelector('.btn-text');[m
+[32m+[m[32m                btnText.textContent = 'Generating...';[m
+[32m+[m[32m                generatePredictionBtn.disabled = true;[m
+[32m+[m[32m                const spinner = document.createElement('i');[m
+[32m+[m[32m                spinner.setAttribute('data-lucide', 'loader-2');[m
+[32m+[m[32m                spinner.classList.add('w-5', 'h-5', 'animate-spin');[m
+[32m+[m[32m                generatePredictionBtn.prepend(spinner);[m
+[32m+[m[32m                lucide.createIcons({[m
+[32m+[m[32m                    nodes: [spinner][m
+[32m+[m[32m                });[m
+[32m+[m
+[32m+[m[32m                // 3. Simulate API call[m
+[32m+[m[32m                setTimeout(() => {[m
+[32m+[m[32m                    // Update result fields (can be dynamic later)[m
+[32m+[m[32m                    document.getElementById('result-item-name').textContent = formInputs.itemName.value;[m
+[32m+[m[32m                    document.getElementById('result-price').textContent = '$' + (formInputs.histPrice.value * 0.92).toFixed(2);[m
+[32m+[m[32m                    document.getElementById('result-confidence').textContent = (Math.random() * (0.98 - 0.75) + 0.75).toFixed(2) * 100 + '% Confidence';[m
+[32m+[m[32m                    document.getElementById('result-hist-price').textContent = '$' + formInputs.histPrice.value;[m
+[32m+[m[32m                    document.getElementById('result-price-change').textContent = '-8.2%';[m
+[32m+[m[32m                    document.getElementById('result-category').textContent = formInputs.category.value;[m
+[32m+[m[32m                    document.getElementById('result-demand').textContent = formInputs.marketDemand.value + '/10';[m
+[32m+[m[32m                    document.getElementById('result-season').textContent = document.getElementById('seasonal-factor').value;[m
+[32m+[m
+[32m+[m
+[32m+[m[32m                    // 4. Switch views[m
+[32m+[m[32m                    predictionFormContent.classList.add('hidden');[m
+[32m+[m[32m                    predictionResultsContent.classList.remove('hidden');[m
+[32m+[m[41m                    [m
+[32m+[m[32m                    // 5. Reset button[m
+[32m+[m[32m                    btnText.textContent = 'Generate Prediction';[m
+[32m+[m[32m                    generatePredictionBtn.disabled = false;[m
+[32m+[m[32m                    generatePredictionBtn.querySelector('i').remove();[m
+[32m+[m
+[32m+[m[32m                }, 2000);[m
+[32m+[m[32m            });[m
+[32m+[m
+[32m+[m[32m            newPredictionBtn.addEventListener('click', () => {[m
+[32m+[m[32m                predictionResultsContent.classList.add('hidden');[m
+[32m+[m[32m                predictionFormContent.classList.remove('hidden');[m
+[32m+[m[32m                predictionError.classList.add('hidden');[m
+[32m+[m[32m            });[m
+[32m+[m
+[32m+[m[32m            fileUpload.addEventListener('change', () => {[m
+[32m+[m[32m                if (fileUpload.files.length > 0) {[m
+[32m+[m[32m                    fileUploadText.textContent = fileUpload.files[0].name;[m
+[32m+[m[32m                } else {[m
+[32m+[m[32m                    fileUploadText.textContent = 'Upload CSV or Excel File';[m
+[32m+[m[32m                }[m
+[32m+[m[32m            });[m
+[32m+[m
+[32m+[m[32m            function renderDashboardCharts() {[m
+[32m+[m[32m                const barCtx = document.getElementById('barChart')?.getContext('2d');[m
+[32m+[m[32m                if(barCtx) {[m
+[32m+[m[32m                    barChartInstance = new Chart(barCtx, {type: 'bar',data: {labels: ['Nike Air Jordan', 'MacBook Pro M3', 'iPhone 15 Pro'],datasets: [{label: 'Predicted Price',data: [220, 2550, 1100], backgroundColor: 'rgba(79, 70, 229, 0.8)', borderRadius: 8, barThickness: 30,}, {label: 'Market Average',data: [250, 2600, 1150], backgroundColor: 'rgba(203, 213, 225, 0.8)', borderRadius: 8, barThickness: 30,}]},options: { responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true } } }});[m
+[32m+[m[32m                }[m
+[32m+[m[32m                const pieCtx = document.getElementById('pieChart')?.getContext('2d');[m
+[32m+[m[32m                if(pieCtx) {[m
+[32m+[m[32m                    pieChartInstance = new Chart(pieCtx, {type: 'pie',data: {labels: ['Electronics', 'Clothing', 'Food', 'Automotive'],datasets: [{data: [50, 17, 17, 17],backgroundColor: ['#4f46e5', '#a78bfa', '#34d399', '#f59e0b'],borderColor: '#ffffff', borderWidth: 4,}]},options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } }});[m
+[32m+[m[32m                }[m
+[32m+[m[32m            }[m
+[32m+[m[32m        });[m
+[32m+[m[32m    </script>[m
+[32m+[m[32m</body>[m
+[32m+[m[32m</html>[m
+[32m+[m
+[1mdiff --git a/pricing_app/__pycache__/urls.cpython-312.pyc b/pricing_app/__pycache__/urls.cpython-312.pyc[m
+[1mindex 17ad332..0761c58 100644[m
+Binary files a/pricing_app/__pycache__/urls.cpython-312.pyc and b/pricing_app/__pycache__/urls.cpython-312.pyc differ
+[1mdiff --git a/pricing_app/__pycache__/views.cpython-312.pyc b/pricing_app/__pycache__/views.cpython-312.pyc[m
+[1mindex c57e80a..42b5f56 100644[m
+Binary files a/pricing_app/__pycache__/views.cpython-312.pyc and b/pricing_app/__pycache__/views.cpython-312.pyc differ
+[1mdiff --git a/pricing_app/templates/pricing_app/dataset_description.html b/pricing_app/templates/pricing_app/dataset_description.html[m
+[1mindex 4dfe83c..3c6beed 100644[m
+[1m--- a/pricing_app/templates/pricing_app/dataset_description.html[m
+[1m+++ b/pricing_app/templates/pricing_app/dataset_description.html[m
+[36m@@ -1,180 +1,75 @@[m
+[31m-{% load static %}[m
+[31m-<!DOCTYPE html>[m
+[31m-<html lang="en">[m
+[31m-<head>[m
+[31m-  <meta charset="UTF-8">[m
+[31m-  <meta name="viewport" content="width=device-width, initial-scale=1.0">[m
+[31m-  <title>Analytics Dashboard - PricePredict Pro</title>[m
+[31m-[m
+[31m-  <!-- Tailwind (from CDN, no need to add to static) -->[m
+[31m-  <script src="https://cdn.tailwindcss.com"></script>[m
+[31m-[m
+[31m-  <!-- Chart.js & plugin (also via CDN) -->[m
+[31m-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>[m
+[31m-  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>[m
+[31m-[m
+[31m-  <!-- Your custom CSS (from static) -->[m
+[31m-  <link rel="stylesheet" href="{% static 'pricing_app/css/style.css' %}">[m
+[31m-</head>[m
+[31m-<body class="bg-slate-50 text-slate-800">[m
+[31m-  <main class="p-4 md:p-8">[m
+[31m-    <h1 class="text-2xl md:text-3xl font-bold mb-6">📊 Analytics Dashboard</h1>[m
+[31m-[m
+[31m-    {% if error %}[m
+[31m-    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6">[m
+[31m-      {{ error }}[m
+[31m-    </div>[m
+[31m-    {% endif %}[m
+[31m-[m
+[31m-    <!-- Metric Cards -->[m
+[31m-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">[m
+[31m-      <div class="metric-card bg-white p-4 md:p-6 rounded-xl shadow">[m
+[31m-        <p class="text-sm text-slate-500">Total Sales Revenue</p>[m
+[31m-        <h2 class="text-xl md:text-2xl font-bold">${{ total_sales_revenue|floatformat:2 }}</h2>[m
+[31m-      </div>[m
+[31m-      [m
+[31m-      <div class="metric-card bg-white p-4 md:p-6 rounded-xl shadow">[m
+[31m-        <p class="text-sm text-slate-500">Total Units Sold</p>[m
+[31m-        <h2 class="text-xl md:text-2xl font-bold">{{ total_units_sold|floatformat:0 }}</h2>[m
+[31m-      </div>[m
+[31m-      [m
+[31m-      <!-- Average Price per Category -->[m
+[31m-      <div class="metric-card bg-white p-4 md:p-6 rounded-xl shadow relative">[m
+[31m-        <div class="flex justify-between items-center mb-2">[m
+[31m-          <p class="text-sm text-slate-500">Average Price per Category</p>[m
+[31m-          <div class="flex space-x-1">[m
+[31m-            <button class="arrow-btn left-arrow" onclick="navigateCategoryPrice('prev')">◀</button>[m
+[31m-            <button class="arrow-btn right-arrow" onclick="navigateCategoryPrice('next')">▶</button>[m
+[31m-          </div>[m
+[32m+[m[32m{% extends "base.html" %}[m
+[32m+[m[32m{% block content %}[m
+[32m+[m[32m<div class="dataset-container">[m
+[32m+[m[32m    <h1 class="dataset-title">Dataset Overview</h1>[m
+[32m+[m
+[32m+[m[32m    <div class="dataset-grid">[m
+[32m+[m[32m        <!-- Category-wise sales -->[m
+[32m+[m[32m        <div class="dataset-card">[m
+[32m+[m[32m            <h3 class="dataset-card-title">Category-wise Sales</h3>[m
+[32m+[m[32m            <canvas id="categoryChart" class="dataset-chart"></canvas>[m
+         </div>[m
+[31m-        <div id="categoryPriceContainer" class="text-center"></div>[m
+[31m-      </div>[m
+[31m-      [m
+[31m-      <!-- Revenue per Region -->[m
+[31m-      <div class="metric-card bg-white p-4 md:p-6 rounded-xl shadow relative">[m
+[31m-        <div class="flex justify-between items-center mb-2">[m
+[31m-          <p class="text-sm text-slate-500">Revenue per Region</p>[m
+[31m-          <div class="flex space-x-1">[m
+[31m-            <button class="arrow-btn left-arrow" onclick="navigateRegionRevenue('prev')">◀</button>[m
+[31m-            <button class="arrow-btn right-arrow" onclick="navigateRegionRevenue('next')">▶</button>[m
+[31m-          </div>[m
+[31m-        </div>[m
+[31m-        <div id="regionRevenueContainer" class="text-center"></div>[m
+[31m-      </div>[m
+[31m-    </div>[m
+ [m
+[31m-    <!-- First Row of Charts -->[m
+[31m-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">[m
+[31m-      <div class="bg-white p-4 md:p-6 rounded-xl shadow">[m
+[31m-        <h3 class="font-semibold mb-4 text-center">Category-wise Sales</h3>[m
+[31m-        <div class="chart-container flex justify-center items-center">[m
+[31m-          <canvas id="categoryChart"></canvas>[m
+[32m+[m[32m        <!-- Sales Over Time -->[m
+[32m+[m[32m        <div class="dataset-card">[m
+[32m+[m[32m            <h3 class="dataset-card-title">Sales Over Time (by Category)</h3>[m
+[32m+[m[32m            <canvas id="salesChart" class="dataset-chart"></canvas>[m
+         </div>[m
+[31m-      </div>[m
+[31m-[m
+[31m-      <div class="bg-white p-4 md:p-6 rounded-xl shadow">[m
+[31m-        <h3 class="font-semibold mb-4">Sales Over Time (by Category)</h3>[m
+[31m-        <div class="chart-container">[m
+[31m-          <canvas id="salesChart"></canvas>[m
+[31m-        </div>[m
+[31m-      </div>[m
+     </div>[m
+ [m
+[31m-    <!-- Second Row of Charts -->[m
+[31m-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">[m
+[31m-      <div class="bg-white p-4 md:p-6 rounded-xl shadow">[m
+[31m-        <h3 class="font-semibold mb-4">Units Sold vs Price Difference</h3>[m
+[31m-        <div class="chart-container">[m
+[31m-          <canvas id="priceDiffChart"></canvas>[m
+[32m+[m[32m    <div class="dataset-grid">[m
+[32m+[m[32m        <!-- Units Sold vs Price Difference -->[m
+[32m+[m[32m        <div class="dataset-card">[m
+[32m+[m[32m            <h3 class="dataset-card-title">Units Sold vs Price Difference</h3>[m
+[32m+[m[32m            <canvas id="priceDiffChart" class="dataset-chart"></canvas>[m
+         </div>[m
+[31m-      </div>[m
+ [m
+[31m-      <div class="bg-white p-4 md:p-6 rounded-xl shadow">[m
+[31m-        <h3 class="font-semibold mb-4">Units Sold vs Discount %</h3>[m
+[31m-        <div class="chart-container">[m
+[31m-          <canvas id="discountChart"></canvas>[m
+[32m+[m[32m        <!-- Units Sold vs Discount % -->[m
+[32m+[m[32m        <div class="dataset-card">[m
+[32m+[m[32m            <h3 class="dataset-card-title">Units Sold vs Discount %</h3>[m
+[32m+[m[32m            <canvas id="discountChart" class="dataset-chart"></canvas>[m
+         </div>[m
+[31m-      </div>[m
+     </div>[m
+[31m-  </main>[m
+[31m-[m
+[31m-  <!-- JS Logic -->[m
+[31m-  <script>[m
+[31m-    const categoryPriceData = {{ avg_price_category|safe }};[m
+[31m-    const regionRevenueData = {{ revenue_region|safe }};[m
+[31m-[m
+[31m-    let categoryKeys = Object.keys(categoryPriceData);[m
+[31m-    let regionKeys = Object.keys(regionRevenueData);[m
+[31m-    let categoryIndex = 0;[m
+[31m-    let regionIndex = 0;[m
+[31m-[m
+[31m-    function updateCategoryPriceDisplay() {[m
+[31m-      const container = document.getElementById("categoryPriceContainer");[m
+[31m-      const key = categoryKeys[categoryIndex];[m
+[31m-      container.innerHTML = `<p class="font-medium text-sm">${key}</p>[m
+[31m-                             <p class="text-lg font-bold">$${categoryPriceData[key].toFixed(2)}</p>`;[m
+[31m-    }[m
+[31m-[m
+[31m-    function updateRegionRevenueDisplay() {[m
+[31m-      const container = document.getElementById("regionRevenueContainer");[m
+[31m-      const key = regionKeys[regionIndex];[m
+[31m-      container.innerHTML = `<p class="font-medium text-sm">${key}</p>[m
+[31m-                             <p class="text-lg font-bold">$${regionRevenueData[key].toFixed(2)}</p>`;[m
+[31m-    }[m
+[31m-[m
+[31m-    function navigateCategoryPrice(dir) {[m
+[31m-      categoryIndex = (dir === "next") [m
+[31m-        ? (categoryIndex + 1) % categoryKeys.length [m
+[31m-        : (categoryIndex - 1 + categoryKeys.length) % categoryKeys.length;[m
+[31m-      updateCategoryPriceDisplay();[m
+[31m-    }[m
+[31m-[m
+[31m-    function navigateRegionRevenue(dir) {[m
+[31m-      regionIndex = (dir === "next") [m
+[31m-        ? (regionIndex + 1) % regionKeys.length [m
+[31m-        : (regionIndex - 1 + regionKeys.length) % regionKeys.length;[m
+[31m-      updateRegionRevenueDisplay();[m
+[31m-    }[m
+[31m-[m
+[31m-    // Init charts[m
+[31m-    document.addEventListener("DOMContentLoaded", () => {[m
+[31m-      updateCategoryPriceDisplay();[m
+[31m-      updateRegionRevenueDisplay();[m
+[31m-[m
+[31m-      const categoryLabels = {{ category_labels_json|safe }};[m
+[31m-      const categoryValues = {{ category_values_json|safe }};[m
+[31m-      const salesLabels = {{ sales_labels_json|safe }};[m
+[31m-      const salesDatasets = {{ sales_datasets_json|safe }};[m
+[31m-      const priceDiffData = {{ price_diff_data_json|safe }};[m
+[31m-      const discountData = {{ discount_data_json|safe }};[m
+[31m-[m
+[31m-      new Chart(document.getElementById("categoryChart"), {[m
+[31m-        type: "pie",[m
+[32m+[m[32m</div>[m
+[32m+[m
+[32m+[m[32m<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>[m
+[32m+[m[32m<script>[m
+[32m+[m[32mdocument.addEventListener('DOMContentLoaded', function() {[m
+[32m+[m[32m    // Category Pie[m
+[32m+[m[32m    new Chart(document.getElementById('categoryChart'), {[m
+[32m+[m[32m        type: 'pie',[m
+         data: {[m
+[31m-          labels: categoryLabels,[m
+[31m-          datasets: [{ data: categoryValues, backgroundColor: ["#6366f1", "#10b981", "#f59e0b", "#ef4444"] }][m
+[32m+[m[32m            labels: {{ category_labels_json|safe }},[m
+[32m+[m[32m            datasets: [{[m
+[32m+[m[32m                data: {{ category_values_json|safe }},[m
+[32m+[m[32m                backgroundColor: ["#6366f1","#10b981","#f59e0b","#ef4444"][m
+[32m+[m[32m            }][m
+         },[m
+[31m-        options: { plugins: { legend: { position: "bottom" } }, maintainAspectRatio: false }[m
+[31m-      });[m
+[32m+[m[32m        options: { responsive:true, maintainAspectRatio:false }[m
+[32m+[m[32m    });[m
+ [m
+[31m-      new Chart(document.getElementById("salesChart"), {[m
+[31m-        type: "line",[m
+[31m-        data: { labels: salesLabels, datasets: salesDatasets },[m
+[31m-        options: { responsive: true, maintainAspectRatio: false }[m
+[31m-      });[m
+[32m+[m[32m    // Sales over time[m
+[32m+[m[32m    new Chart(document.getElementById('salesChart'), {[m
+[32m+[m[32m        type: 'line',[m
+[32m+[m[32m        data: { labels: {{ sales_labels_json|safe }}, datasets: {{ sales_datasets_json|safe }} },[m
+[32m+[m[32m        options: { responsive:true, maintainAspectRatio:false }[m
+[32m+[m[32m    });[m
+ [m
+[31m-      new Chart(document.getElementById("priceDiffChart"), {[m
+[31m-        type: "line",[m
+[31m-        data: { labels: priceDiffData.labels, datasets: [{ label: "Units Sold", data: priceDiffData.values, borderColor: "#3b82f6" }] },[m
+[31m-        options: { responsive: true, maintainAspectRatio: false }[m
+[31m-      });[m
+[32m+[m[32m    // Units Sold vs Price Difference[m
+[32m+[m[32m    const priceDiff = {{ price_diff_data_json|safe }};[m
+[32m+[m[32m    new Chart(document.getElementById('priceDiffChart'), {[m
+[32m+[m[32m        type: 'line',[m
+[32m+[m[32m        data: { labels: priceDiff.labels, datasets:[{ label:"Avg Units Sold", data: priceDiff.values, borderColor:"#3b82f6" }] },[m
+[32m+[m[32m        options:{ responsive:true, maintainAspectRatio:false }[m
+[32m+[m[32m    });[m
+ [m
+[31m-      new Chart(document.getElementById("discountChart"), {[m
+[31m-        type: "line",[m
+[31m-        data: { labels: discountData.labels, datasets: [{ label: "Units Sold", data: discountData.values, borderColor: "#8b5cf6" }] },[m
+[31m-        options: { responsive: true, maintainAspectRatio: false }[m
+[31m-      });[m
+[32m+[m[32m    // Units Sold vs Discount %[m
+[32m+[m[32m    const discountData = {{ discount_data_json|safe }};[m
+[32m+[m[32m    new Chart(document.getElementById('discountChart'), {[m
+[32m+[m[32m        type: 'line',[m
+[32m+[m[32m        data: { labels: discountData.labels, datasets:[{ label:"Avg Units Sold", data: discountData.values, borderColor:"#8b5cf6" }] },[m
+[32m+[m[32m        options:{ responsive:true, maintainAspectRatio:false }[m
+     });[m
+[31m-  </script>[m
+[31m-</body>[m
+[31m-</html>[m
+[32m+[m[32m});[m
+[32m+[m[32m</script>[m
+[32m+[m[32m{% endblock %}[m
+[1mdiff --git a/pricing_app/views.py b/pricing_app/views.py[m
+[1mindex 4e44c1e..9d4ac70 100644[m
+[1m--- a/pricing_app/views.py[m
+[1m+++ b/pricing_app/views.py[m
+[36m@@ -40,7 +40,7 @@[m [mdef dashboard(request):[m
+ from django.shortcuts import render[m
+ from .forms import PricePredictionForm[m
+ from .ml.predictor import predict_price[m
+[31m-[m
+[32m+[m[32m#from .ml.model import xgb_model, X_train[m
+ """def quote_form(request):[m
+     if request.method == "POST":[m
+         form = PricePredictionForm(request.POST)[m
+[36m@@ -167,6 +167,7 @@[m [mdef quote_description(request):[m
+         "weather_impact": data['weather_impact'],[m
+     }[m
+ [m
+[32m+[m[32m    predicted_price = chart_data["predicted_price"][m
+     explanations = {}[m
+ [m
+     # Dynamic explanation logic[m
+[36m@@ -203,7 +204,4 @@[m [mdef quote_description(request):[m
+         "input_data": data,[m
+         "chart_data": chart_data,[m
+         "explanations": explanations,[m
+[31m-    })[m
+[31m-[m
+[31m-[m
+[31m-[m
+[32m+[m[32m    })[m
+\ No newline at end of file[m

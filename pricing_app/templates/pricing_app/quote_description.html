@@ -7,7 +7,7 @@
 
 
 {% extends 'pricing_app/base.html' %}
-
+{% load static %}
 {% block content %}
 <div class="description-wrapper">
     <div class="description-card">
@@ -165,6 +165,15 @@
             </div>
         </div>
     </div>
+</div>
+
+<div class="analysis-image mt-5 text-center">
+    <h3>SHAP Value Explanation</h3>
+    <img src="{% static 'pricing_app/image/shap_summary_plot_xgb.png' %}" alt="SHAP Explanation" class="img-fluid mt-3">
+</div>
+<div class="analysis-image mt-5 text-center">
+    <h3>SHAP Value Explanation</h3>
+    <img src="{% static 'pricing_app/image/sarimax.jpg' %}" alt="SARIMAX explanation" class="img-fluid mt-3">
 </div>
 
 {% endblock %}

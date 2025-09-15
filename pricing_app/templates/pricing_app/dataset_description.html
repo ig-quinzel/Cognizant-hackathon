@@ -1,180 +1,75 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Analytics Dashboard - PricePredict Pro</title>
+{% extends "base.html" %}
+{% block content %}
+<div class="dataset-container">
+    <h1 class="dataset-title">Dataset Overview</h1>
 
-  <!-- Tailwind (from CDN, no need to add to static) -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Chart.js & plugin (also via CDN) -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
-
-  <!-- Your custom CSS (from static) -->
-  <link rel="stylesheet" href="{% static 'pricing_app/css/style.css' %}">
-</head>
-<body class="bg-slate-50 text-slate-800">
-  <main class="p-4 md:p-8">
-    <h1 class="text-2xl md:text-3xl font-bold mb-6">📊 Analytics Dashboard</h1>
-
-    {% if error %}
-    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6">
-      {{ error }}
-    </div>
-    {% endif %}
-
-    <!-- Metric Cards -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-      <div class="metric-card bg-white p-4 md:p-6 rounded-xl shadow">
-        <p class="text-sm text-slate-500">Total Sales Revenue</p>
-        <h2 class="text-xl md:text-2xl font-bold">${{ total_sales_revenue|floatformat:2 }}</h2>
-      </div>
-      
-      <div class="metric-card bg-white p-4 md:p-6 rounded-xl shadow">
-        <p class="text-sm text-slate-500">Total Units Sold</p>
-        <h2 class="text-xl md:text-2xl font-bold">{{ total_units_sold|floatformat:0 }}</h2>
-      </div>
-      
-      <!-- Average Price per Category -->
-      <div class="metric-card bg-white p-4 md:p-6 rounded-xl shadow relative">
-        <div class="flex justify-between items-center mb-2">
-          <p class="text-sm text-slate-500">Average Price per Category</p>
-          <div class="flex space-x-1">
-            <button class="arrow-btn left-arrow" onclick="navigateCategoryPrice('prev')">◀</button>
-            <button class="arrow-btn right-arrow" onclick="navigateCategoryPrice('next')">▶</button>
-          </div>
+    <div class="dataset-grid">
+        <!-- Category-wise sales -->
+        <div class="dataset-card">
+            <h3 class="dataset-card-title">Category-wise Sales</h3>
+            <canvas id="categoryChart" class="dataset-chart"></canvas>
         </div>
-        <div id="categoryPriceContainer" class="text-center"></div>
-      </div>
-      
-      <!-- Revenue per Region -->
-      <div class="metric-card bg-white p-4 md:p-6 rounded-xl shadow relative">
-        <div class="flex justify-between items-center mb-2">
-          <p class="text-sm text-slate-500">Revenue per Region</p>
-          <div class="flex space-x-1">
-            <button class="arrow-btn left-arrow" onclick="navigateRegionRevenue('prev')">◀</button>
-            <button class="arrow-btn right-arrow" onclick="navigateRegionRevenue('next')">▶</button>
-          </div>
+
+        <!-- Sales Over Time -->
+        <div class="dataset-card">
+            <h3 class="dataset-card-title">Sales Over Time (by Category)</h3>
+            <canvas id="salesChart" class="dataset-chart"></canvas>
         </div>
-        <div id="regionRevenueContainer" class="text-center"></div>
-      </div>
     </div>
 
-    <!-- First Row of Charts -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-      <div class="bg-white p-4 md:p-6 rounded-xl shadow">
-        <h3 class="font-semibold mb-4 text-center">Category-wise Sales</h3>
-        <div class="chart-container flex justify-center items-center">
-          <canvas id="categoryChart"></canvas>
+    <div class="dataset-grid">
+        <!-- Units Sold vs Price Difference -->
+        <div class="dataset-card">
+            <h3 class="dataset-card-title">Units Sold vs Price Difference</h3>
+            <canvas id="priceDiffChart" class="dataset-chart"></canvas>
         </div>
-      </div>
 
-      <div class="bg-white p-4 md:p-6 rounded-xl shadow">
-        <h3 class="font-semibold mb-4">Sales Over Time (by Category)</h3>
-        <div class="chart-container">
-          <canvas id="salesChart"></canvas>
+        <!-- Units Sold vs Discount % -->
+        <div class="dataset-card">
+            <h3 class="dataset-card-title">Units Sold vs Discount %</h3>
+            <canvas id="discountChart" class="dataset-chart"></canvas>
         </div>
-      </div>
     </div>
+</div>
 
-    <!-- Second Row of Charts -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-      <div class="bg-white p-4 md:p-6 rounded-xl shadow">
-        <h3 class="font-semibold mb-4">Units Sold vs Price Difference</h3>
-        <div class="chart-container">
-          <canvas id="priceDiffChart"></canvas>
-        </div>
-      </div>
-
-      <div class="bg-white p-4 md:p-6 rounded-xl shadow">
-        <h3 class="font-semibold mb-4">Units Sold vs Discount %</h3>
-        <div class="chart-container">
-          <canvas id="discountChart"></canvas>
-        </div>
-      </div>
-    </div>
-  </main>
-
-  <!-- JS Logic -->
-  <script>
-    const categoryPriceData = {{ avg_price_category|safe }};
-    const regionRevenueData = {{ revenue_region|safe }};
-
-    let categoryKeys = Object.keys(categoryPriceData);
-    let regionKeys = Object.keys(regionRevenueData);
-    let categoryIndex = 0;
-    let regionIndex = 0;
-
-    function updateCategoryPriceDisplay() {
-      const container = document.getElementById("categoryPriceContainer");
-      const key = categoryKeys[categoryIndex];
-      container.innerHTML = `<p class="font-medium text-sm">${key}</p>
-                             <p class="text-lg font-bold">$${categoryPriceData[key].toFixed(2)}</p>`;
-    }
-
-    function updateRegionRevenueDisplay() {
-      const container = document.getElementById("regionRevenueContainer");
-      const key = regionKeys[regionIndex];
-      container.innerHTML = `<p class="font-medium text-sm">${key}</p>
-                             <p class="text-lg font-bold">$${regionRevenueData[key].toFixed(2)}</p>`;
-    }
-
-    function navigateCategoryPrice(dir) {
-      categoryIndex = (dir === "next") 
-        ? (categoryIndex + 1) % categoryKeys.length 
-        : (categoryIndex - 1 + categoryKeys.length) % categoryKeys.length;
-      updateCategoryPriceDisplay();
-    }
-
-    function navigateRegionRevenue(dir) {
-      regionIndex = (dir === "next") 
-        ? (regionIndex + 1) % regionKeys.length 
-        : (regionIndex - 1 + regionKeys.length) % regionKeys.length;
-      updateRegionRevenueDisplay();
-    }
-
-    // Init charts
-    document.addEventListener("DOMContentLoaded", () => {
-      updateCategoryPriceDisplay();
-      updateRegionRevenueDisplay();
-
-      const categoryLabels = {{ category_labels_json|safe }};
-      const categoryValues = {{ category_values_json|safe }};
-      const salesLabels = {{ sales_labels_json|safe }};
-      const salesDatasets = {{ sales_datasets_json|safe }};
-      const priceDiffData = {{ price_diff_data_json|safe }};
-      const discountData = {{ discount_data_json|safe }};
-
-      new Chart(document.getElementById("categoryChart"), {
-        type: "pie",
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Category Pie
+    new Chart(document.getElementById('categoryChart'), {
+        type: 'pie',
         data: {
-          labels: categoryLabels,
-          datasets: [{ data: categoryValues, backgroundColor: ["#6366f1", "#10b981", "#f59e0b", "#ef4444"] }]
+            labels: {{ category_labels_json|safe }},
+            datasets: [{
+                data: {{ category_values_json|safe }},
+                backgroundColor: ["#6366f1","#10b981","#f59e0b","#ef4444"]
+            }]
         },
-        options: { plugins: { legend: { position: "bottom" } }, maintainAspectRatio: false }
-      });
-
-      new Chart(document.getElementById("salesChart"), {
-        type: "line",
-        data: { labels: salesLabels, datasets: salesDatasets },
-        options: { responsive: true, maintainAspectRatio: false }
-      });
-
-      new Chart(document.getElementById("priceDiffChart"), {
-        type: "line",
-        data: { labels: priceDiffData.labels, datasets: [{ label: "Units Sold", data: priceDiffData.values, borderColor: "#3b82f6" }] },
-        options: { responsive: true, maintainAspectRatio: false }
-      });
-
-      new Chart(document.getElementById("discountChart"), {
-        type: "line",
-        data: { labels: discountData.labels, datasets: [{ label: "Units Sold", data: discountData.values, borderColor: "#8b5cf6" }] },
-        options: { responsive: true, maintainAspectRatio: false }
-      });
+        options: { responsive:true, maintainAspectRatio:false }
     });
-  </script>
-</body>
-</html>
+
+    // Sales over time
+    new Chart(document.getElementById('salesChart'), {
+        type: 'line',
+        data: { labels: {{ sales_labels_json|safe }}, datasets: {{ sales_datasets_json|safe }} },
+        options: { responsive:true, maintainAspectRatio:false }
+    });
+
+    // Units Sold vs Price Difference
+    const priceDiff = {{ price_diff_data_json|safe }};
+    new Chart(document.getElementById('priceDiffChart'), {
+        type: 'line',
+        data: { labels: priceDiff.labels, datasets:[{ label:"Avg Units Sold", data: priceDiff.values, borderColor:"#3b82f6" }] },
+        options:{ responsive:true, maintainAspectRatio:false }
+    });
+
+    // Units Sold vs Discount %
+    const discountData = {{ discount_data_json|safe }};
+    new Chart(document.getElementById('discountChart'), {
+        type: 'line',
+        data: { labels: discountData.labels, datasets:[{ label:"Avg Units Sold", data: discountData.values, borderColor:"#8b5cf6" }] },
+        options:{ responsive:true, maintainAspectRatio:false }
+    });
+});
+</script>
+{% endblock %}

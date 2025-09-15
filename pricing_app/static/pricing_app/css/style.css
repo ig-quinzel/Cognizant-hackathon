@@ -554,6 +554,19 @@ body {
     box-shadow: 0 6px 15px rgba(0,0,0,0.1);
 }
 
+/* Makes images responsive like Bootstrap's img-fluid */
+.img-fluid {
+    max-width: 100%;   /* Prevents overflow */
+    height: auto;      /* Keeps aspect ratio */
+    display: block;    /* Removes inline gap */
+    margin-left: auto; /* Center horizontally */
+    margin-right: auto;
+}
+
+/* Adds spacing at the top like Bootstrap's mt-3 */
+.mt-3 {
+    margin-top: 1rem;  /* approx 16px */
+}
 
 
 
