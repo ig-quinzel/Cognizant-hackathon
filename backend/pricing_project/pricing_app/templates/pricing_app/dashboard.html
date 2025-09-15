@@ -1,0 +1,38 @@
+
+
+
+
+{% extends "pricing_app/base.html" %}
+
+{% block content %}
+<div class="dashboard-wrapper">
+    <div class="dashboard-header">
+        <h1 class="dashboard-title">Welcome, {{ user.username }}</h1>
+        <p class="dashboard-subtitle">Superuser Dashboard — Manage and Analyze Pricing with Ease</p>
+    </div>
+
+    <div class="dashboard-cards">
+        <div class="card">
+            <h3>📊 Predict Price</h3>
+            <p>Use AI-driven prediction models to generate optimized pricing for your products.</p>
+            <a href="{% url 'quote_form' %}" class="card-btn">Go to Prediction</a>
+        </div>
+
+        <div class="card">
+            <h3>⚙️ Manage Settings</h3>
+            <p>Update application settings, manage competitors, and fine-tune pricing factors.</p>
+            <a href="#" class="card-btn">Manage</a>
+        </div>
+
+        <div class="card">
+            <h3>📈 Reports & Insights</h3>
+            <p>View detailed analytics and insights on predicted vs. competitor pricing trends.</p>
+            <a href="#" class="card-btn">View Reports</a>
+        </div>
+    </div>
+
+    <div class="dashboard-footer">
+        <p>© 2025 TechNova Solutions | Empowering Businesses with Intelligent Pricing</p>
+    </div>
+</div>
+{% endblock %}
