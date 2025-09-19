@@ -1,0 +1,171 @@
+{% extends "pricing_app/base.html" %}
+{% load static %}
+
+{% block content %}
+  <h1 class="text-2xl md:text-3xl font-bold mb-6">📊 Analytics Dashboard</h1>
+
+  {% if error %}
+  <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6">
+    {{ error }}
+  </div>
+  {% endif %}
+
+  <!-- Metric Cards -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+    <div class="metric-card bg-white p-4 md:p-6 rounded-xl shadow">
+      <p class="text-sm text-slate-500">Total Sales Revenue</p>
+      <h2 class="text-xl md:text-2xl font-bold">${{ total_sales_revenue|floatformat:2 }}</h2>
+    </div>
+    
+    <div class="metric-card bg-white p-4 md:p-6 rounded-xl shadow">
+      <p class="text-sm text-slate-500">Total Units Sold</p>
+      <h2 class="text-xl md:text-2xl font-bold">{{ total_units_sold|floatformat:0 }}</h2>
+    </div>
+
+    <div class="metric-card bg-white p-4 md:p-6 rounded-xl shadow">
+      <p class="text-sm text-slate-500">Avg Price by Category</p>
+      {% for category, price in avg_price_category.items %}
+        <p class="text-sm">{{ category }}: ${{ price|floatformat:2 }}</p>
+      {% endfor %}
+    </div>
+
+    <div class="metric-card bg-white p-4 md:p-6 rounded-xl shadow">
+      <p class="text-sm text-slate-500">Revenue by Region</p>
+      {% for region, revenue in revenue_region.items %}
+        <p class="text-sm">{{ region }}: ${{ revenue|floatformat:2 }}</p>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- First Row of Charts -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+    <div class="bg-white p-4 md:p-6 rounded-xl shadow">
+      <h3 class="font-semibold mb-4 text-center">Category-wise Sales</h3>
+      <div class="chart-container flex justify-center items-center">
+        <canvas id="categoryChart"></canvas>
+      </div>
+    </div>
+
+    <div class="bg-white p-4 md:p-6 rounded-xl shadow">
+      <h3 class="font-semibold mb-4">Sales Over Time (by Category)</h3>
+      <div class="chart-container">
+        <canvas id="salesChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Second Row of Charts -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+    <div class="bg-white p-4 md:p-6 rounded-xl shadow">
+      <h3 class="font-semibold mb-4">Units Sold vs Price Difference</h3>
+      <div class="chart-container">
+        <canvas id="priceDiffChart"></canvas>
+      </div>
+    </div>
+
+    <div class="bg-white p-4 md:p-6 rounded-xl shadow">
+      <h3 class="font-semibold mb-4">Units Sold vs Discount %</h3>
+      <div class="chart-container">
+        <canvas id="discountChart"></canvas>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block extra_js %}
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+
+  <script>
+    // Category Sales Pie Chart
+    const categoryCtx = document.getElementById('categoryChart').getContext('2d');
+    const categoryChart = new Chart(categoryCtx, {
+      type: 'pie',
+      data: {
+        labels: JSON.parse('{{ category_labels_json|safe }}'),
+        datasets: [{
+          data: JSON.parse('{{ category_values_json|safe }}'),
+          backgroundColor: ['#6366f1', '#10b981', '#f59e0b', '#ef4444'],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom' },
+          datalabels: {
+            color: '#fff',
+            font: { weight: 'bold' },
+            formatter: (value) => '$' + value.toLocaleString()
+          }
+        }
+      }
+    });
+
+    // Sales Over Time Line Chart
+    const salesCtx = document.getElementById('salesChart').getContext('2d');
+    const salesChart = new Chart(salesCtx, {
+      type: 'line',
+      data: {
+        labels: JSON.parse('{{ sales_labels_json|safe }}'),
+        datasets: JSON.parse('{{ sales_datasets_json|safe }}')
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true,
+            title: { display: true, text: 'Sales Revenue ($)' }
+          }
+        }
+      }
+    });
+
+    // Price Difference Bar Chart
+    const priceDiffData = JSON.parse('{{ price_diff_data_json|safe }}');
+    const priceDiffCtx = document.getElementById('priceDiffChart').getContext('2d');
+    const priceDiffChart = new Chart(priceDiffCtx, {
+      type: 'bar',
+      data: {
+        labels: priceDiffData.labels,
+        datasets: [{
+          label: 'Avg Units Sold',
+          data: priceDiffData.values,
+          backgroundColor: '#6366f1',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: { beginAtZero: true, title: { display: true, text: 'Units Sold' } },
+          x: { title: { display: true, text: 'Price Difference ($)' } }
+        }
+      }
+    });
+
+    // Discount Percentage Bar Chart
+    const discountData = JSON.parse('{{ discount_data_json|safe }}');
+    const discountCtx = document.getElementById('discountChart').getContext('2d');
+    const discountChart = new Chart(discountCtx, {
+      type: 'bar',
+      data: {
+        labels: discountData.labels,
+        datasets: [{
+          label: 'Avg Units Sold',
+          data: discountData.values,
+          backgroundColor: '#10b981',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: { beginAtZero: true, title: { display: true, text: 'Units Sold' } },
+          x: { title: { display: true, text: 'Discount Range (%)' } }
+        }
+      }
+    });
+  </script>
+{% endblock %}

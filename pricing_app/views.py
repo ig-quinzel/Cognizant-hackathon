@@ -125,6 +125,137 @@ def quote_description(request):
     })
 
 
+from django.shortcuts import render
+import os
+import json
+import pandas as pd
+import numpy as np
+from django.conf import settings
+
+
+
+def analytics_dashboard(request):
+    csv_path = os.path.join(settings.BASE_DIR, "dataset.csv")
+    if not os.path.exists(csv_path):
+        return render(request, "pricing_app/analytic.html", {"error": "Data file not found."})
+
+    df = pd.read_csv(csv_path, parse_dates=["date"])
+    df = df[df["date"] <= pd.to_datetime("2025-09-13")].copy()
+
+    # Ensure numeric types
+    for col in ["sales_revenue", "sales_units", "price", "discount_percentage", "competitor_price_index"]:
+        if col in df.columns:
+            df[col] = pd.to_numeric(df[col], errors="coerce")
+    df["sales_revenue"].fillna(0.0, inplace=True)
+    df["sales_units"].fillna(0.0, inplace=True)
+
+    # --- Metrics ---
+    total_sales_revenue = round(df["sales_revenue"].sum(), 2)
+    total_units_sold = round(df["sales_units"].sum(), 0)
+
+    categories = ["Cabinets", "Chairs", "Sofas", "Tables"]
+    avg_price_category = {
+        cat: round(df.loc[df.get(f"category_{cat}", 0) == 1, "price"].mean() or 0.0, 2)
+        for cat in categories
+    }
+
+    # Region revenue
+    region_cols = [col for col in df.columns if col.startswith("region_")]
+    revenue_region = {}
+    if region_cols:
+        df["region_Others"] = (df[region_cols].sum(axis=1) == 0).astype(int)
+        region_cols.append("region_Others")
+        for region in region_cols:
+            region_name = region.replace("region_", "")
+            revenue_region[region_name] = round(df.loc[df[region] == 1, "sales_revenue"].sum(), 2)
+    else:
+        revenue_region["All"] = total_sales_revenue
+
+    # Pie chart: category-wise sales
+    category_sales = {
+        cat: round(df.loc[df.get(f"category_{cat}", 0) == 1, "sales_revenue"].sum(), 2)
+        for cat in categories
+    }
+
+    # Time series: sales over time
+    df["year_month"] = df["date"].dt.to_period("M").dt.to_timestamp()
+    sales_time = {}
+    for cat in categories:
+        filtered = df[df.get(f"category_{cat}", 0) == 1]
+        grouped = filtered.groupby("year_month")["sales_revenue"].sum()
+        sales_time[cat] = grouped.to_dict()
+
+    # All categories
+    all_grouped = df.groupby("year_month")["sales_revenue"].sum()
+    sales_time["All"] = all_grouped.to_dict()
+
+    all_months = sorted(all_grouped.index.strftime("%Y-%b").tolist(), key=lambda x: pd.to_datetime(x, format="%Y-%b"))
+
+    # Build datasets
+    color_map = {
+        "Cabinets": "#6366f1",
+        "Chairs": "#10b981",
+        "Sofas": "#f59e0b",
+        "Tables": "#ef4444",
+        "All": "#374151",
+    }
+    datasets = []
+    for cat, series in sales_time.items():
+        y_vals = [series.get(pd.to_datetime(m, format="%Y-%b"), 0.0) for m in all_grouped.index.strftime("%Y-%b")]
+        datasets.append({
+            "label": cat,
+            "data": y_vals,
+            "borderColor": color_map.get(cat, "#000"),
+            "backgroundColor": color_map.get(cat, "#00000020"),
+            "tension": 0.2,
+            "fill": False,
+            "borderWidth": 4 if cat == "All" else 2,
+            "pointRadius": 3,
+        })
+
+    # --- Price Difference ---
+    price_diff_data = {"labels": [], "values": []}
+    if "competitor_price_index" in df and "price" in df:
+        df["competitor_price"] = df["price"] * df["competitor_price_index"]
+        df["price_difference"] = df["price"] - df["competitor_price"]
+        df["price_diff_bin"] = pd.cut(df["price_difference"], bins=np.arange(
+            df["price_difference"].min(), df["price_difference"].max() + 5, 5
+        ))
+
+        avg_sales = df.groupby("price_diff_bin", observed=False)["sales_units"].mean().reset_index()
+        price_diff_data["labels"] = [f"{int(b.left)} to {int(b.right)}" for b in avg_sales["price_diff_bin"]]
+        price_diff_data["values"] = avg_sales["sales_units"].fillna(0).tolist()
+
+    # --- Discount ---
+    discount_data = {"labels": [], "values": []}
+    if "price" in df.columns:
+        max_price = df["price"].max()
+        df["discount_pct"] = ((max_price - df["price"]) / max_price) * 100
+        df["discount_bin"] = pd.cut(df["discount_pct"], bins=np.arange(
+            df["discount_pct"].min(), df["discount_pct"].max() + 5, 5
+        ))
+        avg_discount = df.groupby("discount_bin", observed=False)["sales_units"].mean().reset_index()
+        discount_data["labels"] = [f"{int(b.left)}% to {int(b.right)}%" for b in avg_discount["discount_bin"]]
+        discount_data["values"] = avg_discount["sales_units"].fillna(0).tolist()
+
+    # ✅ Context
+    context = {
+        "total_sales_revenue": total_sales_revenue,
+        "total_units_sold": total_units_sold,
+        "avg_price_category": avg_price_category,
+        "revenue_region": revenue_region,
+        "category_sales": category_sales,
+        "category_labels_json": json.dumps(list(category_sales.keys())),
+        "category_values_json": json.dumps(list(category_sales.values())),
+        "sales_labels_json": json.dumps(all_months),
+        "sales_datasets_json": json.dumps(datasets),
+        "price_diff_data_json": json.dumps(price_diff_data),
+        "discount_data_json": json.dumps(discount_data),
+    }
+
+    return render(request, "pricing_app/analytic.html", context)
+
+
     """SHAP PLOT (Feature importance) 
 import shap
 explainer = shap.Explainer(xgb_model, X_train)
